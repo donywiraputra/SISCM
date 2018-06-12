@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('header')
 <nav class:"top-nav">
-  <div class="nav-wrapper cyan lighten-3">
+  <div class="nav-wrapper white">
     <div class:"row">
       <ul class="right">
         <li><a href="logout" class="waves-effect waves-green grey-text">Log out</a></li>
@@ -14,30 +14,30 @@
 
   <ul id="slide-out" class="sidenav sidenav-fixed white">
     <li>
-      <div class="user-view">
-      <div class="background">
-        <img class="responsive-img" src="/images/sidenav_back.png">
-      </div>
-      <a href="#user"><img class="circle" src="#"></a>
-      <a href="#name"><span class="white-text name">{{ auth()->user()->namalengkap }}</a>
-      <span class="white-text email"></span>
+      <div class="user-view center">
+        <img class="responsive-img" src="/images/sis-logo.png">
+        <p class="name">nama user:<br>{{ auth()->user()->namalengkap }}</p>
       </div>
     </li>
+    <div class="divider"></div>
+
     <li><div class="divider"></div></li>
     <li><a class="waves-effect black-text" href="/">Home</a></li>
     <li class="active cyan lighten-5"><a class="waves-effect black-text" href="regmember">Register member</a></li>
     <li><a class="waves-effect black-text" href="transmember">Transaksi member</a></li>
     <li><a class="waves-effect black-text" href="datatransaksi">Data transaksi</a></li>
     <li><a class="waves-effect black-text" href="datamember">Data member</a></li>
-    <li><a class="sidenav-close hide-on-large-only" href="#!"><i class="material-icons">backspace</i>Close</a></li>
+    <li><a class="sidenav-close hide-on-large-only">Tutup</a></li>
   </ul>
 @endsection
 @section ('content')
 <div class="container">
-<div class="row">
-<h4 class="center-align"><b>Registrasi Member</b></h4>
+  <div class="row">
+  <h4 class="center-align">Registrasi Member</h4>
+  </div>
 </div>
 <div class="divider"></div>
+<div class="container">
 <br><br>
 <div class="row">
 

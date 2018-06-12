@@ -59,9 +59,9 @@
 
 
         </main>
-      <footer class="page-footer blue lighten-5">
-        <div class="container">
-
+      <footer class="page-footer white" style="border-top: 2px solid #e0e0e0;">
+        <div class="center grey-text" style="padding-bottom: 1em;">
+          © 2018 Copyright Text
         </div>
       </footer>
 
