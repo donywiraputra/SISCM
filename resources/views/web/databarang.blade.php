@@ -25,9 +25,9 @@
     <li><a class="waves-effect black-text" href="/">Home</a></li>
     <li><a class="waves-effect black-text" href="regmember">Register member</a></li>
     <li><a class="waves-effect black-text" href="transmember">Transaksi member</a></li>
-    <li class="active cyan lighten-5"><a class="waves-effect black-text" href="datatransaksi">Data transaksi</a></li>
+    <li><a class="waves-effect black-text" href="datatransaksi">Data transaksi</a></li>
     <li><a class="waves-effect black-text" href="datamember">Data member</a></li>
-    <li><a class="waves-effect black-text" href="#!">Data barang</a></li>
+    <li class="active cyan lighten-5"><a class="waves-effect black-text" href="#!">Data barang</a></li>
     <li><a class="sidenav-close hide-on-large-only">Tutup</a></li>
   </ul>
 @endsection
@@ -35,7 +35,7 @@
 @section('content')
 <div class="container">
 <div class="row">
-  <h4 class="center-align">Data Transaksi</h4>
+  <h4 class="center-align">Data Member</h4>
 </div>
 </div>
 <div class="divider"></div>
@@ -60,74 +60,4 @@
 
 </div>
 
-<div class="tabeltransaksi">
-  @include('layouts.tabeltransaksi')
-</div>
-
-
-@endsection
-
-@section('script')
-<script>
-$('*').click(function(){
-  $('.sukses').fadeOut(1000);
-});
-
-
-
-$("#caridata").on("change", function() {
-  var value = $(this).val().toLowerCase();
-
-    $.ajax({
-      url : 'datatransaksi/page',
-      data: {insert: value}
-    }).done(function(data1){
-      var transdata = data1;
-      var pesan = '<b>Data tidak tersedia.</b>'
-      $('.tabeltransaksi').html(data1);
-      $(document).ready(function(){
-         $('.modal').modal({
-            dismissible: false
-         });
-       });
-          var info = $('#infodata').html();
-          if( info == 'No. <b></b> - <b></b> | Total <b>0</b> data' ){
-          $('#warning').html(pesan).fadeIn(1, function(){
-              $('#warning').html(pesan).fadeOut(5000);
-            });
-          }
-      })
-})
-
-    $(document).on('click','.pagination a',function(e){
-      e.preventDefault();
-      var page = $(this).attr('href').split('page=')[1];
-      searchPage(page);
-      })
-
-      function searchPage(page)
-      {
-        var value = $('#caridata').val().toLowerCase();
-        $.ajax({
-          url : 'datatransaksi/page?page='+page,
-          data: {insert: value}
-        }).done(function(data){
-
-          $('.tabeltransaksi').html(data);
-          location.hash=page;
-          $(document).ready(function(){
-             $('.modal').modal({
-                dismissible: false
-             });
-           });
-        })
-      }
-
-      $(document).ready(function(){
-         $('.modal').modal({
-            dismissible: false
-         });
-       });
-
-</script>
 @endsection
