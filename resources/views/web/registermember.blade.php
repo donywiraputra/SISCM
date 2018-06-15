@@ -120,14 +120,14 @@
       </div>
 
       <div class="row">
-      @if ($message = Session::get('success'))
-        <p class="sukses left light-green-text text-accent-4"><b>{{$message}}</b></p>
-      @endif
         <div class="col s12 m6 l6">
           <a href="/" class="waves-effect waves-light btn-large">Batal</a>
           &nbsp
           <button class="waves-effect waves-light btn-large" type="submit">Lanjut</button>
         </div>
+        @if ($message = Session::get('success'))
+          <p class="sukses left light-green-text text-accent-4"><b>{{$message}}</b></p>
+        @endif
       </div>
       {{ csrf_field() }}
     </form>

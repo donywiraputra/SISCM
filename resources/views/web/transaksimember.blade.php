@@ -140,6 +140,7 @@ $.ajax({
   var newSt = jsondata.replace(/[{}]/g, "");
   var newStr = newSt.replace(/\[/g, '{').replace(/]/g, '}');
   var obj = JSON.parse(newStr);
+
     $('#autocomplete-input').autocomplete({
       data:obj,
     })
@@ -206,7 +207,7 @@ $('#slcttrs').change(function(){
     var modal2 = 'Member <b>'+nama+'</b> sudah terdaftar sebagai member <b>'+kategori+'</b>. Silahkan pilih transaksi perpanjang atau harian.'
     var modal3 = 'Member <b>'+nama+'</b> belum terdaftar sebagai member <b>'+kategori+'</b>. Silahkan pilih transaksi daftar bulanan atau harian.'
     var expired = $('#expdate').text();
-
+    console.log(kategori);
     if( kategori == ''){
       $('#alert').text("Nama masih kosong!");
     }else if( !(kategori == transvalue) ){

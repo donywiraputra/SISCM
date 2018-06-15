@@ -66,7 +66,7 @@
     <div class="row">
       <div class="col s12 m6 l6">
         <select name="jtrans" id="slcttrs">
-          <option class="default" value="{{ $pilihjenis->idjnstransaksi }}" selected>{{ $pilihjenis->namatransaksi }}</option>
+          <option class="default" value="{{ $trans->idjnstransaksi }}" selected>{{ $trans->namatransaksi }}</option>
           <optgroup label="Fitness">
             @foreach ($fitness as $fts)
             <option id="fit_id" class="Fitness" value="{{ $fts->idjnstransaksi }}">{{ $fts->namatransaksi }}</option>

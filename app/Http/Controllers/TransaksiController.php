@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Member;
-use App\Models\Datamember;
 use App\Models\Jnstransaksi;
 use App\Models\Datatransaksi;
 use Illuminate\Support\Facades\Auth;
@@ -40,7 +39,10 @@ class TransaksiController extends Controller
   public function showDataMember(Request $request)
   {
     $a = $request->input;
-    $memberdata = Datamember::where('namamember','=', $a)->first();
+    $memberdata = Member::join('jeniskelamin', 'member.jnskelamin', '=', 'jeniskelamin.idkelamin')
+    ->join('katagorimember', 'member.id_katmember', '=', 'katagorimember.idkatmember')
+    ->select('member.*', 'jeniskelamin.kelamin', 'katagorimember.katmember')
+    ->where('member.namamember', '=', $a)->first(); 
     return response()->json($memberdata);
   }
 

@@ -59,13 +59,15 @@ class DataTransController extends Controller
 
   public function editTrans($id)
   {
-    $trans = Datatransview::find($id);
-    $jnstrs = $trans->namatransaksi;
-    $pilihjenis = Jnstransaksi::where('namatransaksi', $jnstrs)->first();
+    $trans = Datatransaksi::join('jenistransaksi', 'datatransaksi.idjenistransaksi', '=', 'jenistransaksi.idjnstransaksi')
+    ->join('member', 'datatransaksi.id_member', '=', 'member.idmember')
+    ->join('users', 'datatransaksi.iduser', '=', 'users.id')
+    ->select('datatransaksi.*', 'jenistransaksi.namatransaksi', 'jenistransaksi.biaya', 'member.namamember', 'users.namauser')
+    ->where('datatransaksi.idtransaksi', '=', $id)->first();
     $fitness = Jnstransaksi::where('namatransaksi', 'LIKE', '%fitness%')->get();
     $aerobic = Jnstransaksi::where('namatransaksi', 'LIKE', '%aerobic%')->get();
 
-    return view('web/edittransaksi', compact('fitness', 'aerobic', 'trans', 'pilihjenis'));
+    return view('web/edittransaksi', compact('fitness', 'aerobic', 'trans'));
   }
 
   public function updateTrans(Request $request, $id)
