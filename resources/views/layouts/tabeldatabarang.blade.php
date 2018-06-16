@@ -27,7 +27,7 @@
         <td>Rp. {{ number_format($barang->harga, 2) }}</td>
         <td>{{ $barang->stok }}</td>
         <td id="created">{{ $barang->namauser }}</td>
-        <td id="exp">{{ $barang->created_at }}</td>
+        <td id="exp">{{ $barang->updated_at }}</td>
         <td><a href="/databarang/id{{ $barang->id }}/edit" class="btn waves-effect waves-teal btn-flat">Edit</a></td>
         <td><a data-target="modal{{ $barang->id }}" id="modalalert" class="btn modal-trigger waves-effect waves-teal btn-flat">Hapus</a></td>
 
