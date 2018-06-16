@@ -35,32 +35,45 @@
 @section('content')
 <div class="container">
 <div class="row">
-  <h4 class="center-align">Data Barang</h4>
+  <h4 class="center-align">Tambah Data Barang</h4>
 </div>
 </div>
 <div class="divider"></div>
 <div class="container">
 <br>
 
-<div class="row">
-  <div class="input-field col s12 m6 l6">
-    <input name="inputdata" placeholder="Cari data..." id="caridata" type="text" class="validate" autocomplete="off">
-    <label for="caridata">Pencarian</label>
+  <div class="row">
+    <div class="input-field col s12 m6 l6">
+      <input id="namabarang" type="text" class="validate">
+      <label for="namabarang">Nama Barang</label>
+    </div>
   </div>
-    @if ($message = Session::get('success'))
-      <span class="sukses light-green-text text-accent-4"><b>{{$message}}</b></span>
-    @endif
-      <span id="warning" class="red-text"></span>
+
+  <div class="row">
+    <div class="input-field col s12 m6 l6">
+      <input id="harga" type="text" class="validate">
+      <label for="harga">Harga</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="input-field col s12 m6 l6">
+      <input id="stok" type="text" class="validate">
+      <label for="stok">Jumlah stok</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="input-field col s12 m6 l6">
       <div class="right">
-        <ul>
-          <li><a href="#!" class="btn waves-effect waves-teal btn-flat">Print view</a></li>
-          <li><a href="#!" class="btn waves-effect waves-teal btn-flat">Buat data baru</a></li>
-        <ul>
-      </div>
-</div>
-
-
+        <a href="/datamember" class="waves-effect waves-light btn-large">Batal</a>
+        &nbsp
+        <button class="waves-effect waves-light btn-large" type="submit">Simpan</button>
+    </div>
+    </div>
+  </div>
 
 </div>
+
 
 @endsection

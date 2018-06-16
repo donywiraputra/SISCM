@@ -54,7 +54,7 @@
       <div class="right">
         <ul>
           <li><a href="#!" class="btn waves-effect waves-teal btn-flat">Print view</a></li>
-          <li><a href="#!" class="btn waves-effect waves-teal btn-flat">Buat data baru</a></li>
+          <li><a href="/databarang/tambahdatabarang" class="btn waves-effect waves-teal btn-flat">Buat data baru</a></li>
         <ul>
       </div>
 </div>
