@@ -47,6 +47,12 @@
     <div class="input-field col s12 m6 l6">
       <input name="namabarang" id="namabarang" type="text" class="validate">
       <label for="namabarang">Nama Barang</label>
+
+    </div>
+    <div class="col s12 m6 l6">
+      @if($errors->has('namabarang'))
+        <p class="alert red-text">{{ $errors->first('namabarang') }}</p>
+      @endif
     </div>
   </div>
 
@@ -54,6 +60,12 @@
     <div class="input-field col s12 m6 l6">
       <input name="harga" id="harga" type="text" class="validate">
       <label for="harga">Harga</label>
+
+    </div>
+    <div class="col s12 m6 l6">
+      @if($errors->has('harga'))
+        <p class="alert red-text">{{ $errors->first('harga') }}</p>
+      @endif
     </div>
   </div>
 
@@ -61,6 +73,11 @@
     <div class="input-field col s12 m6 l6">
       <input name="stok" id="stok" type="text" class="validate">
       <label for="stok">Jumlah stok</label>
+    </div>
+    <div class="col s12 m6 l6">
+      @if($errors->has('stok'))
+        <p class="alert red-text">{{ $errors->first('stok') }}</p>
+      @endif
     </div>
   </div>
 
@@ -72,6 +89,11 @@
         <button class="waves-effect waves-light btn-large" type="submit">Simpan</button>
     </div>
     </div>
+    @if ($message = Session::get('success'))
+    <div class="col s12 m6 l6">
+      <p class="sukses left light-green-text text-accent-4"><b>{{$message}}</b></p>
+    </div>
+    @endif
   </div>
   {{ csrf_field() }}
 <form>
@@ -80,4 +102,13 @@
 
 
 
+@endsection
+
+@section('script')
+<script>
+  $('*').click(function(){
+    $('.alert').fadeOut(3000);
+    $('.sukses').fadeOut(3000);
+  })
+</script>
 @endsection
