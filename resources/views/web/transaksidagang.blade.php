@@ -46,8 +46,8 @@
 <form action="{{url(action('TambahdatabarangController@insertDataBarang'))}}" method="post">
   <div class="row">
     <div class="input-field col s12 m6 l6">
-      <input name="namabarang" id="namabarang" type="text" class="validate" value="{{ old('namabarang' )}}" autocomplete="off">
-      <label for="namabarang">Nama Barang</label>
+      <input name="namabarang" type="text" value="" id="autocomplete-input" class="autocomplete" autocomplete="off">
+      <label for="autocomplete-input">Masukkan nama barang</label>
 
     </div>
     <div class="col s12 m6 l6">
@@ -59,8 +59,8 @@
 
   <div class="row">
     <div class="input-field col s12 m6 l6">
-      <input name="namabarang" type="text" value="" id="autocomplete-input" class="autocomplete" autocomplete="off">
-      <label for="autocomplete-input">Masukkan nama member</label>
+      <input name="harga" id="harga" type="text" class="validate" value="{{ old('harga' )}}" autocomplete="off">
+      <label for="harga">Harga</label>
 
     </div>
     <div class="col s12 m6 l6">
@@ -100,7 +100,25 @@
 <form>
 </div>
 
+@endsection
 
+@section('script')
+<script>
+$.ajax({
+  headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+  method: "GET",
+  url: "caribarang",
+}).done(function(databarang){
+  var data = databarang;
+  var jsondata = JSON.stringify(data);
+  var newSt = jsondata.replace(/[{}]/g, "");
+  var newStr = newSt.replace(/\[/g, '{').replace(/]/g, '}');
+  var obj = JSON.parse(newStr);
 
+    $('#autocomplete-input').autocomplete({
+      data:obj,
+    })
+  })
 
+</script>
 @endsection
