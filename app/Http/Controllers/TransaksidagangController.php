@@ -22,4 +22,13 @@ class TransaksidagangController extends Controller
       return response()->json($databarang);
       //dd($result);
     }
+
+    public function validasiBarang(Request $request)
+    {
+      $data = $request->input;
+      $databarang = Datajenisbarang::where('namabarang', '=', $data)
+      ->first();
+
+      return $databarang;
+    }
 }

@@ -54,6 +54,7 @@
       @if($errors->has('namabarang'))
         <p class="alert red-text">{{ $errors->first('namabarang') }}</p>
       @endif
+        <p class="nodata red-text"></p>
     </div>
   </div>
 
@@ -104,6 +105,11 @@
 
 @section('script')
 <script>
+
+$('*').click(function(){
+  $('.alert').fadeOut(1000);
+})
+// autocomplete nama barang
 $.ajax({
   headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
   method: "GET",
@@ -119,6 +125,25 @@ $.ajax({
       data:obj,
     })
   })
+
+$('#autocomplete-input').change(function(){
+  var value = $(this).val();
+  $.ajax({
+    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+    method: "GET",
+    url: "validasibarang",
+    data: {input: value}
+  }).done(function(barang){
+    var data = barang;
+   console.log(data === '');
+    if(data === ''){
+      $('.nodata').text('Data tidak ditemukan').fadeIn(0);
+      $(document).click(function(){
+        $('.nodata').fadeOut(1000);
+      })
+    }
+  })
+})
 
 </script>
 @endsection
