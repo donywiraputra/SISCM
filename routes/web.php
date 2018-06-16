@@ -47,6 +47,7 @@ Route::get('/datamember/{id}/delete', 'DataMemberController@deletemember');
 Route::get('databarang', 'DatabarangController@getDataBarang');
 Route::get('/databarang/tambahdatabarang', 'TambahdatabarangController@getTambahDataBarang');
 Route::post('/databarang/tambahdatabarang/postdata', 'TambahdatabarangController@insertDataBarang');
+Route::get('/databarang/page', 'DatabarangController@tabelBarang');
 Route::get('logout', function()
   {
     Auth::logout();

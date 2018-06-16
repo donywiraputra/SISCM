@@ -53,14 +53,69 @@
       <span id="warning" class="red-text"></span>
       <div class="right">
         <ul>
-          <li><a href="#!" class="btn waves-effect waves-teal btn-flat">Print view</a></li>
-          <li><a href="/databarang/tambahdatabarang" class="btn waves-effect waves-teal btn-flat">Buat data baru</a></li>
+          <li><a href="#!" class="btn waves-effect waves-teal btn-flat right">Print view</a></li>
+          <li><a href="/databarang/tambahdatabarang" class="btn waves-effect waves-teal btn-flat right">Buat data baru</a></li>
         <ul>
       </div>
 </div>
 
-
-
 </div>
 
+<div class="tabelbarang">
+    @include('layouts.tabeldatabarang')
+</div>
+
+@endsection
+
+@section('script')
+<script>
+$("#caridata").on("change", function() {
+  var value = $(this).val().toLowerCase();
+
+    $.ajax({
+      url : '/databarang/page',
+      data: {insert: value}
+    }).done(function(data1){
+      var transdata = data1;
+      var pesan = '<b>Data tidak tersedia.</b>'
+      $('.tabelbarang').html(data1);
+      $(document).ready(function(){
+         $('.modal').modal({
+            dismissible: false
+         });
+       });
+          var info = $('#infodata').html();
+          if( info == 'No. <b></b> - <b></b> | Total <b>0</b> data' ){
+          $('#warning').html(pesan).fadeIn(1, function(){
+              $('#warning').html(pesan).fadeOut(5000);
+            });
+          }
+      })
+})
+
+
+$(document).on('click','.pagination a',function(e){
+  e.preventDefault();
+  var page = $(this).attr('href').split('page=')[1];
+  searchPage(page);
+  })
+
+  function searchPage(page)
+  {
+    var value = $('#caridata').val().toLowerCase();
+    $.ajax({
+      url : '/databarang/page?page='+page,
+      data: {insert: value}
+    }).done(function(data){
+      
+      $('.tabelbarang').html(data);
+      location.hash=page;
+      $(document).ready(function(){
+         $('.modal').modal({
+            dismissible: false
+         });
+       });
+    })
+  }
+</script>
 @endsection

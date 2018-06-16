@@ -29,6 +29,6 @@ class TambahdatabarangController extends Controller
       $databarang->iduser = $userid->id;
       $databarang->save();
 
-      return view('web.tambahdatabarang');
+      return redirect('databarang/tambahdatabarang');
     }
 }

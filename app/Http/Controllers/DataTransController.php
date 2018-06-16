@@ -32,7 +32,8 @@ class DataTransController extends Controller
   public function tabelTrans(Request $request)
   {
     $tes = $request->insert;
-    if(!empty($tes)){
+    if(!empty($tes))
+    {
     $transview = Datatransaksi::join('jenistransaksi', 'datatransaksi.idjenistransaksi', '=', 'jenistransaksi.idjnstransaksi')
     ->join('member', 'datatransaksi.id_member', '=', 'member.idmember')
     ->join('users', 'datatransaksi.iduser', '=', 'users.id')
