@@ -44,6 +44,7 @@ Route::get('datamember/page', 'DataMemberController@tabelmember');
 Route::get('/datamember/{id}/detail', 'DataMemberController@detailmember');
 Route::put('/datamember/{id}', 'DataMemberController@updatemember');
 Route::get('/datamember/{id}/delete', 'DataMemberController@deletemember');
+Route::get('databarang', 'DatabarangController@getDataBarang');
 Route::get('logout', function()
   {
     Auth::logout();

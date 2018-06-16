@@ -27,7 +27,7 @@
     <li><a class="waves-effect black-text" href="transmember">Transaksi member</a></li>
     <li><a class="waves-effect black-text" href="datatransaksi">Data transaksi</a></li>
     <li><a class="waves-effect black-text" href="datamember">Data member</a></li>
-    <li class="active cyan lighten-5"><a class="waves-effect black-text" href="#!">Data barang</a></li>
+    <li class="active cyan lighten-5"><a class="waves-effect black-text" href="databarang">Data barang</a></li>
     <li><a class="sidenav-close hide-on-large-only">Tutup</a></li>
   </ul>
 @endsection
@@ -35,7 +35,7 @@
 @section('content')
 <div class="container">
 <div class="row">
-  <h4 class="center-align">Data Member</h4>
+  <h4 class="center-align">Data Barang</h4>
 </div>
 </div>
 <div class="divider"></div>
@@ -52,7 +52,10 @@
     @endif
       <span id="warning" class="red-text"></span>
       <div class="right">
-        <a href="#!" class="btn waves-effect waves-teal btn-flat">Print view</a>
+        <ul>
+          <li><a href="#!" class="btn waves-effect waves-teal btn-flat">Print view</a></li>
+          <li><a href="#!" class="btn waves-effect waves-teal btn-flat">Buat data baru</a></li>
+        <ul>
       </div>
 </div>
 
