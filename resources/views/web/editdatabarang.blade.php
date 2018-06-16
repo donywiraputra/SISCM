@@ -35,17 +35,18 @@
 @section('content')
 <div class="container">
 <div class="row">
-  <h4 class="center-align">Tambah Data Barang</h4>
+  <h4 class="center-align">Edit Data Barang</h4>
 </div>
 </div>
 <div class="divider"></div>
 <div class="container">
 <br>
 
-<form action="{{url(action('TambahdatabarangController@insertDataBarang'))}}" method="post">
+<form action="/databarang/id{{ $barang->id }}" method="post">
+  <input name="_method" type="hidden" value="PUT">
   <div class="row">
     <div class="input-field col s12 m6 l6">
-      <input name="namabarang" id="namabarang" type="text" class="validate">
+      <input name="namabarang" id="namabarang" value="{{ $barang->namabarang }}" type="text" class="validate">
       <label for="namabarang">Nama Barang</label>
 
     </div>
@@ -58,7 +59,7 @@
 
   <div class="row">
     <div class="input-field col s12 m6 l6">
-      <input name="harga" id="harga" type="text" class="validate">
+      <input name="harga" id="harga" value="{{ $barang->harga }}" type="text" class="validate">
       <label for="harga">Harga</label>
 
     </div>
@@ -71,7 +72,7 @@
 
   <div class="row">
     <div class="input-field col s12 m6 l6">
-      <input name="stok" id="stok" type="text" class="validate">
+      <input name="stok" id="stok" value="{{ $barang->stok }}" type="text" class="validate">
       <label for="stok">Jumlah stok</label>
     </div>
     <div class="col s12 m6 l6">

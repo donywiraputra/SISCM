@@ -44,4 +44,7 @@ class TambahdatabarangController extends Controller
 
       return redirect('databarang/tambahdatabarang')->with(['success' => 'Data berhasil disimpan']);
     }
+
+    
+
 }

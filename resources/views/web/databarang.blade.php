@@ -69,6 +69,10 @@
 
 @section('script')
 <script>
+$('*').click(function(){
+  $('.sukses').fadeOut(1000);
+});
+
 $("#caridata").on("change", function() {
   var value = $(this).val().toLowerCase();
 
@@ -107,7 +111,7 @@ $(document).on('click','.pagination a',function(e){
       url : '/databarang/page?page='+page,
       data: {insert: value}
     }).done(function(data){
-      
+
       $('.tabelbarang').html(data);
       location.hash=page;
       $(document).ready(function(){
@@ -117,5 +121,11 @@ $(document).on('click','.pagination a',function(e){
        });
     })
   }
+
+  $(document).ready(function(){
+     $('.modal').modal({
+        dismissible: false
+     });
+   });
 </script>
 @endsection

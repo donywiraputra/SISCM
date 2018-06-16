@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Datajenisbarang;
+use Illuminate\Support\Facades\Auth;
 
 class DatabarangController extends Controller
 {
@@ -45,6 +46,50 @@ class DatabarangController extends Controller
       ->paginate(8);
 
       return view('layouts.tabeldatabarang', compact('databarang'));
+    }
+
+    public function editDataBarang($id)
+    {
+      $barang = Datajenisbarang::join('users', 'jenisbarang.iduser', '=', 'users.id')
+      ->select('jenisbarang.*', 'users.namauser')
+      ->where('jenisbarang.id', '=', $id)->first();
+
+      return view('web.editdatabarang', compact('barang'));
+    }
+
+    public function updateDataBarang(Request $request, $id)
+    {
+      $this->validate($request,
+      [
+        'namabarang'=> 'required|unique:jenisbarang,namabarang',
+        'harga'=> 'required|numeric',
+        'stok'=> 'required|numeric'
+      ],
+      [
+        'namabarang.required'=> 'Nama barang harus diisi',
+        'namabarang.unique'=> 'Barang sudah ada',
+        'harga.required'=> 'Harga harus diisi',
+        'harga.numeric'=> 'Harga harus berupa angka',
+        'stok.required'=> 'Stok harus diisi',
+        'stok.numeric'=> 'Stok harus berupa angka'
+      ]);
+      $updatebarang = Datajenisbarang::where('id', $id)->first();
+      $updatebarang->namabarang = $request->namabarang;
+      $updatebarang->harga = $request->harga;
+      $updatebarang->stok = $request->stok;
+      $userid = Auth::user();
+      $updatebarang->iduser = $userid->id;
+      $updatebarang->save();
+
+      return redirect('databarang')->with(['success' => 'Data berhasil disimpan']);
+    }
+
+    public function deleteDataBarang($id)
+    {
+      $deletebarang = Datajenisbarang::find($id);
+      $deletebarang->delete();
+
+      return redirect('databarang');
     }
 
 }

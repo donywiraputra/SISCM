@@ -28,20 +28,20 @@
         <td>{{ $barang->stok }}</td>
         <td id="created">{{ $barang->namauser }}</td>
         <td id="exp">{{ $barang->created_at }}</td>
-        <td><a href="#!" class="btn waves-effect waves-teal btn-flat">Edit</a></td>
-        <td><a data-target="modal" id="modalalert" class="btn modal-trigger waves-effect waves-teal btn-flat">Hapus</a></td>
+        <td><a href="/databarang/id{{ $barang->id }}/edit" class="btn waves-effect waves-teal btn-flat">Edit</a></td>
+        <td><a data-target="modal{{ $barang->id }}" id="modalalert" class="btn modal-trigger waves-effect waves-teal btn-flat">Hapus</a></td>
 
       </tr>
 
       <!-- Modal Structure -->
-        <div id="modal" class="modal">
+        <div id="modal{{ $barang->id }}" class="modal">
           <div class="modal-content">
 
-            <p>Apakah anda yakin ingin menghapus data ini?</p>
+            <p>Apakah anda yakin ingin menghapus data <b>{{ $barang->namabarang }}</b>?</p>
           </div>
           <div class="modal-footer">
             <a class="modal-close waves-effect waves-green btn-flat">Tidak</a>
-            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Ya</a>
+            <a href="/databarang/id{{ $barang->id }}/delete" class="modal-close waves-effect waves-green btn-flat">Ya</a>
           </div>
         </div>
       @endforeach
