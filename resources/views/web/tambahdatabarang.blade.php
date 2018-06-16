@@ -42,23 +42,24 @@
 <div class="container">
 <br>
 
+<form action="{{url(action('TambahdatabarangController@insertDataBarang'))}}" method="post">
   <div class="row">
     <div class="input-field col s12 m6 l6">
-      <input id="namabarang" type="text" class="validate">
+      <input name="namabarang" id="namabarang" type="text" class="validate">
       <label for="namabarang">Nama Barang</label>
     </div>
   </div>
 
   <div class="row">
     <div class="input-field col s12 m6 l6">
-      <input id="harga" type="text" class="validate">
+      <input name="harga" id="harga" type="text" class="validate">
       <label for="harga">Harga</label>
     </div>
   </div>
 
   <div class="row">
     <div class="input-field col s12 m6 l6">
-      <input id="stok" type="text" class="validate">
+      <input name="stok" id="stok" type="text" class="validate">
       <label for="stok">Jumlah stok</label>
     </div>
   </div>
@@ -72,7 +73,8 @@
     </div>
     </div>
   </div>
-
+  {{ csrf_field() }}
+<form>
 </div>
 
 
