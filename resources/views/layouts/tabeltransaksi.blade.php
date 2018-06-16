@@ -24,7 +24,7 @@
       @foreach ($transview as $transaksi)
       <tr>
         <td>{{ $transaksi->namatransaksi }}</td>
-        <td>Rp. {{ number_format($transaksi->biaya, 2) }}</td>
+        <td>Rp. {{ number_format($transaksi->biaya) }}</td>
         <td>{{ $transaksi->namamember }}</td>
         <td>{{ $transaksi->namauser }}</td>
         <td>{{ $transaksi->created_at }}</td>

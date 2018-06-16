@@ -24,7 +24,7 @@
       @foreach ($databarang as $barang)
       <tr id="data">
         <td>{{ $barang->namabarang }}</td>
-        <td>Rp. {{ number_format($barang->harga, 2) }}</td>
+        <td>Rp. {{ number_format($barang->harga) }}</td>
         <td>{{ $barang->stok }}</td>
         <td id="created">{{ $barang->namauser }}</td>
         <td id="exp">{{ $barang->updated_at }}</td>

@@ -48,7 +48,6 @@
     <div class="input-field col s12 m6 l6">
       <input name="namabarang" type="text" value="" id="autocomplete-input" class="autocomplete" autocomplete="off">
       <label for="autocomplete-input">Masukkan nama barang</label>
-
     </div>
     <div class="col s12 m6 l6">
       @if($errors->has('namabarang'))
@@ -59,22 +58,21 @@
   </div>
 
   <div class="row">
-    <div class="input-field col s12 m6 l6">
-      <input name="harga" id="harga" type="text" class="validate" value="{{ old('harga' )}}" autocomplete="off">
-      <label for="harga">Harga</label>
-
+    <div class="col s12 m3 l3">
+      <input name="jumlah" id="jumlah" type="text" class="validate" value="" autocomplete="off">
+      <label for="jumlah">Jumlah</label>
     </div>
-    <div class="col s12 m6 l6">
-      @if($errors->has('harga'))
-        <p class="alert red-text">{{ $errors->first('harga') }}</p>
-      @endif
+
+    <div class="col s12 m3 l3">
+      <input disabled name="harga" id="harga" type="text" class="validate" value="" autocomplete="off">
+      <label for="harga">Harga</label>
     </div>
   </div>
 
   <div class="row">
-    <div class="input-field col s12 m6 l6">
-      <input name="stok" id="stok" type="text" class="validate" value="{{ old('stok' )}}" autocomplete="off">
-      <label for="stok">Jumlah stok</label>
+    <div class="col s12 m6 l6">
+      <input name="stok" id="stok" type="text" class="validate" autocomplete="off">
+      <label for="stok">Bayar</label>
     </div>
     <div class="col s12 m6 l6">
       @if($errors->has('stok'))
@@ -134,14 +132,28 @@ $('#autocomplete-input').change(function(){
     url: "validasibarang",
     data: {input: value}
   }).done(function(barang){
-    var data = barang;
-   console.log(data === '');
+      var data = barang;
+      var harga = data.harga;
+      var conv = (harga/1000).toFixed(3);
+      var conv2 = conv.replace(/\./g, ',');
+
     if(data === ''){
       $('.nodata').text('Data tidak ditemukan').fadeIn(0);
       $(document).click(function(){
         $('.nodata').fadeOut(1000);
       })
+    }else{
+    $('#jumlah').val(1);
+    $('#harga').val('Rp. '+ conv2);
     }
+    $('#jumlah').change(function(){
+        var jml = $(this).val();
+        var kali = jml * harga;
+        var kali2 = (kali/1000).toFixed(3);
+        var convkali = kali2.replace(/\./g, ',');
+      $('#harga').val('Rp. '+ convkali);
+    })
+
   })
 })
 

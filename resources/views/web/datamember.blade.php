@@ -103,21 +103,6 @@ $(document).ready(function(){
      }
 
    })
-   // $('#data #created').each(function(){
-   //   var crt = $(this).text(),
-   //       waktucrt = new Date(crt),
-   //       waktums = waktucrt.getTime(),
-   //       wktmsadd = waktums + 28800000,
-   //       wkt = new Date(wktmsadd);
-   //       wktlokal = wkt.toISOString();
-   //   console.log(wktlokal);
-   //   $.ajax({
-   //     url : '/datamember/createdate',
-   //     data: {date: wktlokal}
-   //   }).done(function(datawaktu){
-   //
-   //   })
-   // })
  })
 
 $("#caridata").on("change", function() {
