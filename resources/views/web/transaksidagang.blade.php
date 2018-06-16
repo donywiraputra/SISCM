@@ -25,10 +25,10 @@
     <li><a class="waves-effect black-text" href="/">Home</a></li>
     <li><a class="waves-effect black-text" href="/regmember">Register member</a></li>
     <li><a class="waves-effect black-text" href="/transmember">Transaksi member</a></li>
-    <li><a class="waves-effect black-text" href="/transaksidagang">Transaksi dagang</a></li>
+    <li class="active cyan lighten-5"><a class="waves-effect black-text" href="/transaksidagang">Transaksi dagang</a></li>
     <li><a class="waves-effect black-text" href="/datatransaksi">Data transaksi</a></li>
     <li><a class="waves-effect black-text" href="/datamember">Data member</a></li>
-    <li class="active cyan lighten-5"><a class="waves-effect black-text" href="/databarang">Data barang</a></li>
+    <li><a class="waves-effect black-text" href="/databarang">Data barang</a></li>
     <li><a class="sidenav-close hide-on-large-only">Tutup</a></li>
   </ul>
 @endsection
@@ -36,7 +36,7 @@
 @section('content')
 <div class="container">
 <div class="row">
-  <h4 class="center-align">Tambah Data Barang</h4>
+  <h4 class="center-align">Transaksi Dagang</h4>
 </div>
 </div>
 <div class="divider"></div>
@@ -59,8 +59,8 @@
 
   <div class="row">
     <div class="input-field col s12 m6 l6">
-      <input name="harga" id="harga" type="text" class="validate" value="{{ old('harga' )}}" autocomplete="off">
-      <label for="harga">Harga</label>
+      <input name="namabarang" type="text" value="" id="autocomplete-input" class="autocomplete" autocomplete="off">
+      <label for="autocomplete-input">Masukkan nama member</label>
 
     </div>
     <div class="col s12 m6 l6">
@@ -103,13 +103,4 @@
 
 
 
-@endsection
-
-@section('script')
-<script>
-  $('*').click(function(){
-    $('.alert').fadeOut(1000);
-    $('.sukses').fadeOut(1000);
-  })
-</script>
 @endsection

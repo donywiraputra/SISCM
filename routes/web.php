@@ -51,6 +51,7 @@ Route::get('/databarang/page', 'DatabarangController@tabelBarang');
 Route::get('/databarang/id{id}/edit', 'DatabarangController@editDataBarang');
 Route::put('/databarang/id{id}', 'DatabarangController@updateDataBarang');
 Route::get('/databarang/id{id}/delete', 'DatabarangController@deleteDataBarang');
+Route::get('transaksidagang', 'TransaksidagangController@getTransaksiDagang');
 Route::get('logout', function()
   {
     Auth::logout();

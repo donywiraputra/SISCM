@@ -3,10 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Carbon\Carbon;
 
 class Datajenisbarang extends Model
 {
+  use SoftDeletes;
   protected $table = 'jenisbarang';
 
   public function dataBarang()
