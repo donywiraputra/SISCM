@@ -55,7 +55,7 @@
       <div class="right">
         <ul>
           <li><a href="#!" class="btn waves-effect waves-teal btn-flat right">Print view</a></li>
-          <li><a href="/databarang/tambahdatabarang" class="btn waves-effect waves-teal btn-flat right">Buat data baru</a></li>
+          <li><a href="/databarang/tambahdatabarang" class="btn waves-effect waves-teal btn-flat right">Tambah barang baru</a></li>
         <ul>
       </div>
 </div>
@@ -73,6 +73,17 @@
 $('*').click(function(){
   $('.sukses').fadeOut(1000);
 });
+
+$(document).ready(function(){
+  $('#data #stok').each(function(){
+    var stok = $(this).text();
+    if(stok == 0){
+      $(this).addClass("red-text text-accent-3");
+    }else if(stok <= 3){
+      $(this).addClass("amber-text");
+    }
+  })
+})
 
 $("#caridata").on("change", function() {
   var value = $(this).val().toLowerCase();
@@ -95,6 +106,14 @@ $("#caridata").on("change", function() {
               $('#warning').html(pesan).fadeOut(5000);
             });
           }
+        $('#data #stok').each(function(){
+          var stok = $(this).text();
+          if(stok == 0){
+            $(this).addClass("red-text text-accent-3");
+          }else if(stok <= 3){
+            $(this).addClass("amber-text");
+          }
+        })
       })
 })
 
@@ -120,6 +139,14 @@ $(document).on('click','.pagination a',function(e){
             dismissible: false
          });
        });
+       $('#data #stok').each(function(){
+         var stok = $(this).text();
+         if(stok == 0){
+           $(this).addClass("red-text text-accent-3");
+         }else if(stok <= 3){
+           $(this).addClass("amber-text");
+         }
+       })
     })
   }
 
