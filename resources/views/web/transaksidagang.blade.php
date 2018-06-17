@@ -50,9 +50,6 @@
       <label for="autocomplete-input">Masukkan nama barang</label>
     </div>
     <div class="col s12 m6 l6">
-      @if($errors->has('namabarang'))
-        <p class="alert red-text">{{ $errors->first('namabarang') }}</p>
-      @endif
         <p class="nodata red-text"></p>
     </div>
   </div>
@@ -76,9 +73,6 @@
     </div>
     <div class="col s12 m3 l3">
       <span id="pesan"></span>
-      @if($errors->has('stok'))
-        <p class="alert red-text">{{ $errors->first('stok') }}</p>
-      @endif
     </div>
   </div>
 
@@ -86,7 +80,7 @@
     <div class="input-field col s12 m6 l6">
       <div class="right">
         <a id="cancel" class="waves-effect waves-light btn-large">Cancel</a>&nbsp;
-        <button id="proses" class="waves-effect waves-light btn-large disabled" type="submit">Proses</button>
+        <a id="proses" class="waves-effect waves-light btn-large disabled">Proses</a>
     </div>
     </div>
     <div class="col s12 m6 l6">
@@ -137,8 +131,17 @@ $('#autocomplete-input').change(function(){
       var data = barang;
       var harga = data.harga;
       var conv = (harga/1000).toFixed(3).replace(/\./g, ',');
+      var stok = data.stok;
+
     if(data === ''){
       $('.nodata').text('Data tidak ditemukan').fadeIn(0);
+      $('#jumlah').val('');
+      $('#harga').val('');
+      $(document).click(function(){
+        $('.nodata').fadeOut(1000);
+      })
+    }else if(stok == 0){
+      $('.nodata').text('Stok barang habis').fadeIn(0);
       $('#jumlah').val('');
       $('#harga').val('');
       $(document).click(function(){
@@ -182,8 +185,18 @@ $('#autocomplete-input').change(function(){
       }
     })
 
+    $('#proses').click(function(){
+      if(stok == 0){
+        $('#pesan').html('<b class="red-text">Stok barang habis</b>').fadeIn(0);
+      }else{
+        $('form').submit();
+      }
+    })
+
   })
 })
+
+
 
 
 </script>

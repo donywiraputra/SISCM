@@ -46,6 +46,11 @@ class TransaksidagangController extends Controller
       $transaksidagang->biaya = $harga * $jml;
       $userid = Auth::user();
       $transaksidagang->iduser = $userid->id;
-      dd($transaksidagang);
+      $stok = $barang->stok;
+      $barang->stok = $stok - $jml;
+      $transaksidagang->save();
+      $barang->save();
+
+      return redirect('transaksidagang')->with(['success' => 'Transaksi berhasil diproses']);
     }
 }
