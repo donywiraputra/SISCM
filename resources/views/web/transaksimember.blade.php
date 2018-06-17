@@ -232,16 +232,16 @@ $('#slcttrs').change(function(){
       $('#pesan').fadeIn(1);
       var bayar = $(this).val();
       var inputmbr = $('#autocomplete-input').val();
-      console.log(inputmbr);
+
       if( inputmbr == '' ){
-        $('#pesan').html('<b class="red-text">Nama member masih kosong!</b>');
+        $('#pesan').html('<b class="red-text">Nama member masih kosong</b>');
         $('#proses').attr('class', 'waves-effect waves-light btn-large disabled');
         $(this).val('');
       }else if( bayar == '' ){
-        $('#pesan').html('<b class="red-text">Pembayaran masih kosong!</b>');
+        $('#pesan').html('<b class="red-text">Pembayaran masih kosong</b>');
         $('#proses').attr('class', 'waves-effect waves-light btn-large disabled');
       }else if( $.isNumeric(bayar) == false ){
-        $('#pesan').html('<b class="red-text">Input bayar harus angka!</b>');
+        $('#pesan').html('<b class="red-text">Input bayar harus angka</b>');
         $('#proses').attr('class', 'waves-effect waves-light btn-large disabled');
       }else if(bayar > kirimbiaya){
         var kembali = bayar - kirimbiaya;
@@ -249,7 +249,7 @@ $('#slcttrs').change(function(){
         $('#pesan').html('<b class="light-green-text text-accent-4">Kembali Rp. '+kembaliconv+'</b>');
         $('#proses').attr('class', 'waves-effect waves-light btn-large');
       }else if( bayar < kirimbiaya){
-        $('#pesan').html('<b class="red-text">Uang kurang!</b>');
+        $('#pesan').html('<b class="red-text">Uang kurang</b>');
         $('#proses').attr('class', 'waves-effect waves-light btn-large disabled');
       }else if( bayar == kirimbiaya ){
         $('#pesan').html('<b class="light-green-text text-accent-4">Uang pas</b>');

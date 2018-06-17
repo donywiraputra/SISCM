@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Datajenisbarang;
+use App\Models\Transaksidagang;
+use Illuminate\Support\Facades\Auth;
 
 class TransaksidagangController extends Controller
 {
@@ -30,5 +32,20 @@ class TransaksidagangController extends Controller
       ->first();
 
       return $databarang;
+    }
+
+    public function insertTransaksiDagang(Request $request)
+    {
+      $transaksidagang = new Transaksidagang;
+      $namabarang = $request->namabarang;
+      $barang = Datajenisbarang::where('namabarang', $namabarang)->first();
+      $harga = $barang->harga;
+      $jml = $request->jumlah;
+      $transaksidagang->idbarang = $barang->id;
+      $transaksidagang->jumlah = $request->jumlah;
+      $transaksidagang->biaya = $harga * $jml;
+      $userid = Auth::user();
+      $transaksidagang->iduser = $userid->id;
+      dd($transaksidagang);
     }
 }

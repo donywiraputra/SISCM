@@ -43,7 +43,7 @@
 <div class="container">
 <br>
 
-<form action="{{url(action('TambahdatabarangController@insertDataBarang'))}}" method="post">
+<form action="{{url(action('TransaksidagangController@insertTransaksiDagang'))}}" method="post">
   <div class="row">
     <div class="input-field col s12 m6 l6">
       <input name="namabarang" type="text" value="" id="autocomplete-input" class="autocomplete" autocomplete="off">
@@ -70,11 +70,12 @@
   </div>
 
   <div class="row">
-    <div class="col s12 m6 l6">
-      <input name="stok" id="stok" type="text" class="validate" autocomplete="off">
-      <label for="stok">Bayar</label>
+    <div class="col s12 m3 l3">
+      <input name="bayar" id="bayar" type="text" class="validate" autocomplete="off">
+      <label for="bayar">Bayar</label>
     </div>
-    <div class="col s12 m6 l6">
+    <div class="col s12 m3 l3">
+      <span id="pesan"></span>
       @if($errors->has('stok'))
         <p class="alert red-text">{{ $errors->first('stok') }}</p>
       @endif
@@ -84,13 +85,13 @@
   <div class="row">
     <div class="input-field col s12 m6 l6">
       <div class="right">
-        <a href="/databarang" class="waves-effect waves-light btn-large">Batal</a>
-        &nbsp
-        <button class="waves-effect waves-light btn-large" type="submit">Simpan</button>
+        <a id="cancel" class="waves-effect waves-light btn-large">Cancel</a>&nbsp;
+        <button id="proses" class="waves-effect waves-light btn-large disabled" type="submit">Proses</button>
     </div>
     </div>
-    @if ($message = Session::get('success'))
     <div class="col s12 m6 l6">
+
+    @if ($message = Session::get('success'))
       <p class="sukses left light-green-text text-accent-4"><b>{{$message}}</b></p>
     </div>
     @endif
@@ -124,6 +125,7 @@ $.ajax({
     })
   })
 
+// validasi nama barang & autofill jumlah + harga
 $('#autocomplete-input').change(function(){
   var value = $(this).val();
   $.ajax({
@@ -134,28 +136,55 @@ $('#autocomplete-input').change(function(){
   }).done(function(barang){
       var data = barang;
       var harga = data.harga;
-      var conv = (harga/1000).toFixed(3);
-      var conv2 = conv.replace(/\./g, ',');
-
+      var conv = (harga/1000).toFixed(3).replace(/\./g, ',');
     if(data === ''){
       $('.nodata').text('Data tidak ditemukan').fadeIn(0);
+      $('#jumlah').val('');
+      $('#harga').val('');
       $(document).click(function(){
         $('.nodata').fadeOut(1000);
       })
     }else{
     $('#jumlah').val(1);
-    $('#harga').val('Rp. '+ conv2);
+    $('#harga').val('Rp. '+ conv);
     }
-    $('#jumlah').change(function(){
+    $('#jumlah').keyup(function(){
         var jml = $(this).val();
         var kali = jml * harga;
-        var kali2 = (kali/1000).toFixed(3);
-        var convkali = kali2.replace(/\./g, ',');
-      $('#harga').val('Rp. '+ convkali);
+        var kali2 = (kali/1000).toFixed(3).replace(/\./g, ',');
+      $('#harga').val('Rp. '+ kali2);
+    })
+
+    // validasi pembayaran
+    $('#bayar').keyup(function(){
+      var uang = $(this).val();
+      var namabarang = $('#autocomplete-input').val();
+      var jumlah = $('#jumlah').val();
+      var bayar = jumlah * harga;
+
+      if(uang == bayar){
+        $('#pesan').html('<b class="light-green-text text-accent-4">Uang pas</b>').fadeIn(0);
+        $('#proses').attr('class', 'waves-effect waves-light btn-large');
+      }else if(uang == ''){
+        $('#pesan').fadeOut(1000);
+        $('#proses').attr('class', 'waves-effect waves-light btn-large disabled');
+      }else if(uang > bayar){
+        var kembali = uang - bayar;
+        var kembaliconv = (kembali/1000).toFixed(3).replace(/\./g, ',');
+        $('#pesan').html('<b class="light-green-text text-accent-4">Kembali Rp. '+kembaliconv+'</b>').fadeIn(0);
+        $('#proses').attr('class', 'waves-effect waves-light btn-large');
+      }else if(uang < bayar){
+        $('#pesan').html('<b class="red-text">Uang kurang</b>').fadeIn(0);
+        $('#proses').attr('class', 'waves-effect waves-light btn-large disabled');
+      }else if( $.isNumeric(uang) == false ){
+        $('#pesan').html('<b class="red-text">Input bayar harus angka</b>').fadeIn(0);
+        $('#proses').attr('class', 'waves-effect waves-light btn-large disabled');
+      }
     })
 
   })
 })
+
 
 </script>
 @endsection
