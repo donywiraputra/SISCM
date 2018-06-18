@@ -34,6 +34,17 @@ class TransaksidagangController extends Controller
       return $databarang;
     }
 
+    public function subTotalDagang(Request $request)
+    {
+      $namabarang = $request->barang;
+      $jumlahbarang = $request->jumlah;
+      $barang = Datajenisbarang::where('namabarang', $namabarang)->first();
+      $harga = $barang->harga;
+      $subtotal = $jumlahbarang * $harga;
+
+      return $subtotal;
+    }
+
     public function insertTransaksiDagang(Request $request)
     {
       $transaksidagang = new Transaksidagang;

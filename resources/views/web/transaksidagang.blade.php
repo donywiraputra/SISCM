@@ -35,18 +35,21 @@
 @endsection
 
 @section('content')
+
 <div class="container">
 <div class="row">
   <h4 class="center-align">Transaksi Dagang</h4>
 </div>
 </div>
 <div class="divider"></div>
+<div class="row">
+  <div class="col s12 m6 l6">
 <div class="container">
 <br>
 
 <form action="{{url(action('TransaksidagangController@insertTransaksiDagang'))}}" method="post">
   <div class="row">
-    <div class="input-field col s12 m6 l6">
+    <div class="input-field col s12">
       <input name="namabarang" type="text" value="" id="autocomplete-input" class="autocomplete" autocomplete="off">
       <label for="autocomplete-input">Masukkan nama barang</label>
     </div>
@@ -56,19 +59,19 @@
   </div>
 
   <div class="row">
-    <div class="col s12 m3 l3">
+    <div class="col s12 m6 l6">
       <input name="jumlah" id="jumlah" type="text" class="validate" value="" autocomplete="off">
       <label for="jumlah">Jumlah</label>
     </div>
 
-    <div class="col s12 m3 l3">
+    <div class="col s12 m6 l6">
       <input disabled name="harga" id="harga" type="text" class="validate" value="" autocomplete="off">
       <label for="harga">Harga</label>
     </div>
   </div>
 
   <div class="row">
-    <div class="col s12 m3 l3">
+    <div class="col s12 m6 l6">
       <input name="bayar" id="bayar" type="text" class="validate" autocomplete="off">
       <label for="bayar">Bayar</label>
     </div>
@@ -78,10 +81,10 @@
   </div>
 
   <div class="row">
-    <div class="input-field col s12 m6 l6">
+    <div class="input-field col s12">
       <div class="right">
         <a id="cancel" class="waves-effect waves-light btn-large">Cancel</a>&nbsp;
-        <a id="proses" class="waves-effect waves-light btn-large disabled">Proses</a>
+        <a id="proses" class="waves-effect waves-light btn-large">Proses</a>
     </div>
     </div>
     <div class="col s12 m6 l6">
@@ -92,7 +95,33 @@
     @endif
   </div>
   {{ csrf_field() }}
-<form>
+</form>
+</div>
+</div>
+
+</div>
+
+<div class="row">
+<div class="col s12 m6 l6">
+  <div class="container">
+    <br>
+  <div class="row">
+    <table>
+       <thead>
+         <tr>
+             <th>Barang</th>
+             <th>Jumlah</th>
+             <th>Subtotal</th>
+         </tr>
+       </thead>
+
+       <tbody class="list">
+
+       </tbody>
+     </table>
+  </div>
+</div>
+</div>
 </div>
 
 @endsection
@@ -166,32 +195,44 @@ $('#autocomplete-input').change(function(){
       var jumlah = $('#jumlah').val();
       var bayar = jumlah * harga;
 
-      if(uang == bayar){
-        $('#pesan').html('<b class="light-green-text text-accent-4">Uang pas</b>').fadeIn(0);
-        $('#proses').attr('class', 'waves-effect waves-light btn-large');
-      }else if(uang == ''){
-        $('#pesan').fadeOut(1000);
-        $('#proses').attr('class', 'waves-effect waves-light btn-large disabled');
-      }else if(uang > bayar){
-        var kembali = uang - bayar;
-        var kembaliconv = (kembali/1000).toFixed(3).replace(/\./g, ',');
-        $('#pesan').html('<b class="light-green-text text-accent-4">Kembali Rp. '+kembaliconv+'</b>').fadeIn(0);
-        $('#proses').attr('class', 'waves-effect waves-light btn-large');
-      }else if(uang < bayar){
-        $('#pesan').html('<b class="red-text">Uang kurang</b>').fadeIn(0);
-        $('#proses').attr('class', 'waves-effect waves-light btn-large disabled');
-      }else if( $.isNumeric(uang) == false ){
-        $('#pesan').html('<b class="red-text">Input bayar harus angka</b>').fadeIn(0);
-        $('#proses').attr('class', 'waves-effect waves-light btn-large disabled');
-      }
+      // if(uang == bayar){
+      //   $('#pesan').html('<b class="light-green-text text-accent-4">Uang pas</b>').fadeIn(0);
+      //   $('#proses').attr('class', 'waves-effect waves-light btn-large');
+      // }else if(uang == ''){
+      //   $('#pesan').fadeOut(1000);
+      //   $('#proses').attr('class', 'waves-effect waves-light btn-large disabled');
+      // }else if(uang > bayar){
+      //   var kembali = uang - bayar;
+      //   var kembaliconv = (kembali/1000).toFixed(3).replace(/\./g, ',');
+      //   $('#pesan').html('<b class="light-green-text text-accent-4">Kembali Rp. '+kembaliconv+'</b>').fadeIn(0);
+      //   $('#proses').attr('class', 'waves-effect waves-light btn-large');
+      // }else if(uang < bayar){
+      //   $('#pesan').html('<b class="red-text">Uang kurang</b>').fadeIn(0);
+      //   $('#proses').attr('class', 'waves-effect waves-light btn-large disabled');
+      // }else if( $.isNumeric(uang) == false ){
+      //   $('#pesan').html('<b class="red-text">Input bayar harus angka</b>').fadeIn(0);
+      //   $('#proses').attr('class', 'waves-effect waves-light btn-large disabled');
+      // }
     })
 
-    $('#proses').click(function(){
-      if(stok == 0){
-        $('#pesan').html('<b class="red-text">Stok barang habis</b>').fadeIn(0);
-      }else{
-        $('form').submit();
-      }
+    $('#proses').off('click').click(function(){
+      var namabarang = $('#autocomplete-input').val();
+      var jumlah = $('#jumlah').val();
+      $.ajax({
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        method: "GET",
+        url: "getsubtotal",
+        data: {barang: namabarang , jumlah: jumlah}
+      }).done(function(subtotal){
+        var sub = subtotal;
+        $('.list').append('<tr><td>'+namabarang+'</td><td>'+jumlah+'</td><td>'+sub+'</td></tr>');
+        $('#autocomplete-input, #jumlah, #harga').val('').blur();
+      })
+      // if(stok == 0){
+      //   $('#pesan').html('<b class="red-text">Stok barang habis</b>').fadeIn(0);
+      // }else{
+      //   $('form').submit();
+      // }
     })
 
   })
