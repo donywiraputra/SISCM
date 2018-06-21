@@ -60,40 +60,24 @@
 
   <div class="row">
     <div class="col s12 m6 l6">
-      <input name="jumlah" id="jumlah" type="text" class="validate" value="" autocomplete="off">
+      <input name="jumlah" id="jumlah" type="text" value="" autocomplete="off">
       <label for="jumlah">Jumlah</label>
     </div>
 
     <div class="col s12 m6 l6">
-      <input disabled name="harga" id="harga" type="text" class="validate" value="" autocomplete="off">
+      <input disabled name="harga" id="harga" type="text" value="" autocomplete="off">
       <label for="harga">Harga</label>
     </div>
   </div>
 
   <div class="row">
-    <div class="col s12 m6 l6">
-      <input name="bayar" id="bayar" type="text" class="validate" autocomplete="off">
-      <label for="bayar">Bayar</label>
+    <div class="col s12">
+      <div class="center">
+        <a id="cancel" class="waves-effect waves-light btn">Cancel</a>&nbsp;
+        <a id="catat" class="waves-effect waves-light btn">Catat</a>&nbsp;
+        <a id="simpan" class="waves-effect waves-light btn disabled">Simpan</a>
+      </div>
     </div>
-    <div class="col s12 m3 l3">
-      <span id="pesan"></span>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="input-field col s12">
-      <div class="right">
-        <a id="cancel" class="waves-effect waves-light btn-large">Cancel</a>&nbsp;
-        <a id="proses" class="waves-effect waves-light btn-large">Proses</a>
-    </div>
-    </div>
-    <div class="col s12 m6 l6">
-
-    @if ($message = Session::get('success'))
-      <p class="sukses left light-green-text text-accent-4"><b>{{$message}}</b></p>
-    </div>
-    @endif
-  </div>
   {{ csrf_field() }}
 </form>
 </div>
@@ -106,9 +90,9 @@
   <div class="container">
     <br>
   <div class="row">
-    <table>
+    <table class="centered">
        <thead>
-         <tr>
+         <tr class="head">
              <th>Barang</th>
              <th>Jumlah</th>
              <th>Subtotal</th>
@@ -116,10 +100,28 @@
        </thead>
 
        <tbody class="list">
-
+         <tr>
+            <td></td>
+            <td><b>Total</b></td>
+            <td class="total"></td>
+         </tr>
        </tbody>
      </table>
   </div>
+
+  <div class="row">
+    <div class="col s12 m6 l6">
+      <input disabled name="bayar" id="bayar" type="text" class="validate" autocomplete="off">
+      <label for="bayar">Bayar</label>
+    </div>
+    <div class="col s12 m6 l6">
+      <span id="pesan"></span>
+      @if ($message = Session::get('success'))
+      <p class="sukses left light-green-text text-accent-4"><b>{{$message}}</b></p>
+      @endif
+    </div>
+  </div>
+
 </div>
 </div>
 </div>
@@ -131,6 +133,7 @@
 
 $('*').click(function(){
   $('.alert').fadeOut(1000);
+  $('.sukses').fadeOut(1000);
 })
 // autocomplete nama barang
 $.ajax({
@@ -188,34 +191,9 @@ $('#autocomplete-input').change(function(){
       $('#harga').val('Rp. '+ kali2);
     })
 
-    // validasi pembayaran
-    $('#bayar').keyup(function(){
-      var uang = $(this).val();
-      var namabarang = $('#autocomplete-input').val();
-      var jumlah = $('#jumlah').val();
-      var bayar = jumlah * harga;
 
-      // if(uang == bayar){
-      //   $('#pesan').html('<b class="light-green-text text-accent-4">Uang pas</b>').fadeIn(0);
-      //   $('#proses').attr('class', 'waves-effect waves-light btn-large');
-      // }else if(uang == ''){
-      //   $('#pesan').fadeOut(1000);
-      //   $('#proses').attr('class', 'waves-effect waves-light btn-large disabled');
-      // }else if(uang > bayar){
-      //   var kembali = uang - bayar;
-      //   var kembaliconv = (kembali/1000).toFixed(3).replace(/\./g, ',');
-      //   $('#pesan').html('<b class="light-green-text text-accent-4">Kembali Rp. '+kembaliconv+'</b>').fadeIn(0);
-      //   $('#proses').attr('class', 'waves-effect waves-light btn-large');
-      // }else if(uang < bayar){
-      //   $('#pesan').html('<b class="red-text">Uang kurang</b>').fadeIn(0);
-      //   $('#proses').attr('class', 'waves-effect waves-light btn-large disabled');
-      // }else if( $.isNumeric(uang) == false ){
-      //   $('#pesan').html('<b class="red-text">Input bayar harus angka</b>').fadeIn(0);
-      //   $('#proses').attr('class', 'waves-effect waves-light btn-large disabled');
-      // }
-    })
 
-    $('#proses').off('click').click(function(){
+    $('#catat').off('click').click(function(){
       var namabarang = $('#autocomplete-input').val();
       var jumlah = $('#jumlah').val();
       $.ajax({
@@ -224,18 +202,52 @@ $('#autocomplete-input').change(function(){
         url: "getsubtotal",
         data: {barang: namabarang , jumlah: jumlah}
       }).done(function(subtotal){
+        if(stok == 0){
+          $('#pesan').html('<b class="red-text">Stok barang habis</b>').fadeIn(0);
+        }else{
+          $('#bayar').removeAttr("disabled");
+        }
+        total = 0;
         var sub = subtotal;
-        $('.list').append('<tr><td>'+namabarang+'</td><td>'+jumlah+'</td><td>'+sub+'</td></tr>');
+        var convsub = (sub/1000).toFixed(3).replace(/\./g, ',');
+        $('.list').prepend('<tr class="data"><td>'+namabarang+'</td><td>'+jumlah+'</td><td class="subtotal">Rp. '+convsub+'</td></tr>');
         $('#autocomplete-input, #jumlah, #harga').val('').blur();
+        $('.subtotal').each(function(){
+          var harga = $(this).text().replace(/,/g , '').replace(/Rp/g , '').replace(/\./g , '');
+              total += harga*1;
+        })
+        $('.total').text('Rp. '+(total/1000).toFixed(3).replace(/\./g, ','));
       })
-      // if(stok == 0){
-      //   $('#pesan').html('<b class="red-text">Stok barang habis</b>').fadeIn(0);
-      // }else{
-      //   $('form').submit();
-      // }
     })
 
+    // validasi pembayaran
+    $('#bayar').keyup(function(){
+      var uang = $(this).val();
+      console.log(total);
+      if(uang == total){
+        $('#pesan').html('<b class="light-green-text text-accent-4">Uang pas</b>').fadeIn(0);
+        $('#simpan').attr('class', 'waves-effect waves-light btn');
+      }else if(uang == ''){
+        $('#pesan').fadeOut(1000);
+        $('#simpan').attr('class', 'waves-effect waves-light btn disabled');
+      }else if(uang > total){
+        var kembali = uang - total;
+        var kembaliconv = (kembali/1000).toFixed(3).replace(/\./g, ',');
+        $('#pesan').html('<b class="light-green-text text-accent-4">Kembali Rp. '+kembaliconv+'</b>').fadeIn(0);
+        $('#simpan').attr('class', 'waves-effect waves-light btn');
+      }else if(uang < total){
+        $('#pesan').html('<b class="red-text">Uang kurang</b>').fadeIn(0);
+        $('#simpan').attr('class', 'waves-effect waves-light btn disabled');
+      }else if( $.isNumeric(uang) == false ){
+        $('#pesan').html('<b class="red-text">Input bayar harus angka</b>').fadeIn(0);
+        $('#simpan').attr('class', 'waves-effect waves-light btn disabled');
+      }
+    })
   })
+})
+
+$('#simpan').click(function(){
+  $('form').submit();
 })
 
 
