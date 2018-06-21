@@ -86,7 +86,7 @@
 </div>
 
 <div class="row">
-<div class="col s12 m6 l6">
+<div class="col s12 m6 l6" style="background-color: #f5f5f5;">
   <div class="container">
     <br>
   <div class="row">
