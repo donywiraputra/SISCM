@@ -64,14 +64,14 @@ class TransaksidagangController extends Controller
       }else{
       $request->session()->push('barang', $data);
       }
-
-
       return $subtotal;
     }
 
     public function insertTransaksiDagang(Request $request)
     {
       $value = $request->session()->get('barang');
+
+      // update jumlah stok pada jenis barang
       foreach ($value as $key => $v){
         $idbrg['idbarang'] = $v['idbarang'];
         $jml['jumlah'] = $v['jumlah'];
@@ -88,8 +88,24 @@ class TransaksidagangController extends Controller
           $v->save();
         }
       }
+
+      // insert data pada transaksi dagang
       $transaksidagang = Transaksidagang::insert($value);
 
-      return redirect('transaksidagang')->with(['success' => 'Transaksi berhasil diproses']);      
+      return redirect('transaksidagang')->with(['success' => 'Transaksi berhasil diproses']);
+    }
+
+    public function deleteList(Request $request)
+    {
+      $cekdata = $request->namabarang;
+      $barang = Datajenisbarang::where('namabarang', $cekdata)->first();
+      $idbarang = $barang->id;
+      $value = $request->session()->get('barang');
+      foreach ($value as $k => $v){
+        if ($v['idbarang'] == $idbarang){
+          unset($value[$k]);
+          $request->session()->put('barang', $value);
+        }
+      }
     }
 }

@@ -55,6 +55,7 @@ Route::get('transaksidagang', 'TransaksidagangController@getTransaksiDagang');
 Route::get('caribarang', 'TransaksidagangController@dataBarang');
 Route::get('validasibarang', 'TransaksidagangController@validasiBarang');
 Route::get('getsubtotal', 'TransaksidagangController@subTotalDagang');
+Route::get('deletelist', 'TransaksidagangController@deleteList');
 Route::post('/transaksidagang/posttransaksi', 'TransaksidagangController@insertTransaksiDagang');
 Route::get('datatransdagang', 'DatatransdagangController@getDataTransDagang');
 Route::get('logout', function()

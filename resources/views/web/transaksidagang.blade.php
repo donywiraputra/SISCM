@@ -86,16 +86,17 @@
 </div>
 
 <div class="row">
-<div class="col s12 m6 l6" style="background-color: #f5f5f5;">
+<div class="col s12 m6 l6">
   <div class="container">
     <br>
-  <div class="row">
+  <div class="row" style="background-color: #fafafa; border: 1px solid #e0e0e0;">
     <table class="centered">
        <thead>
          <tr class="head">
              <th>Barang</th>
              <th>Jumlah</th>
              <th>Subtotal</th>
+             <th></th>
          </tr>
        </thead>
 
@@ -104,6 +105,7 @@
             <td></td>
             <td><b>Total</b></td>
             <td class="total"></td>
+            <td></td>
          </tr>
        </tbody>
      </table>
@@ -210,13 +212,31 @@ $('#autocomplete-input').change(function(){
         total = 0;
         var sub = subtotal;
         var convsub = (sub/1000).toFixed(3).replace(/\./g, ',');
-        $('.list').prepend('<tr class="data"><td>'+namabarang+'</td><td>'+jumlah+'</td><td class="subtotal">Rp. '+convsub+'</td></tr>');
+        $('.list').prepend('<tr class="data"><td class="namabarang">'+namabarang+'</td><td>'+jumlah+'</td><td class="subtotal">Rp. '+convsub+'</td><td><a id="deletelist" class="waves-effect waves-teal btn-flat"><i class="material-icons">clear</i></a></td></tr>');
         $('#autocomplete-input, #jumlah, #harga').val('').blur();
         $('.subtotal').each(function(){
           var harga = $(this).text().replace(/,/g , '').replace(/Rp/g , '').replace(/\./g , '');
               total += harga*1;
         })
         $('.total').text('Rp. '+(total/1000).toFixed(3).replace(/\./g, ','));
+
+        $('#deletelist').click(function(){
+          var name = $(this).closest('tr').find('.namabarang').text();
+          var hargasub = $(this).closest('tr').find('.subtotal').text().replace(/,/g , '').replace(/Rp/g , '').replace(/\./g , '');
+              total -= hargasub*1;
+
+          $('.total').text('Rp. '+(total/1000).toFixed(3).replace(/\./g, ','));
+          if (total == 0){
+            $('.total').text('');
+          }
+          $(this).closest('tr').remove();
+
+          $.ajax({
+            method: "GET",
+            url: "deletelist",
+            data: {namabarang: name}
+          })
+        })
       })
     })
 
@@ -245,6 +265,8 @@ $('#autocomplete-input').change(function(){
     })
   })
 })
+
+
 
 $('#simpan').click(function(){
   $('form').submit();
