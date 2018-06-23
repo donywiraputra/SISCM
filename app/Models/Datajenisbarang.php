@@ -10,6 +10,7 @@ class Datajenisbarang extends Model
 {
   use SoftDeletes;
   protected $table = 'jenisbarang';
+    protected $fillable = ['stok', 'updated_at'];
 
   public function dataBarang()
   {

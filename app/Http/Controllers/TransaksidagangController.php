@@ -8,6 +8,7 @@ use App\Models\Transaksidagang;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use Session;
 
 class TransaksidagangController extends Controller
 {
@@ -71,8 +72,24 @@ class TransaksidagangController extends Controller
     public function insertTransaksiDagang(Request $request)
     {
       $value = $request->session()->get('barang');
+      foreach ($value as $key => $v){
+        $idbrg['idbarang'] = $v['idbarang'];
+        $jml['jumlah'] = $v['jumlah'];
+        $stokbarang = Datajenisbarang::select('stok')->whereIn('id', $idbrg)->get();
+        foreach ($stokbarang as $a => $b){
+          $stok['jumlah'] = $b['stok'];
+        }
+        foreach ($stok as $a => $b){
+          $upstok['stok'] =  $stok[$a] - $jml[$a];
+        }
+        $updatebarang = Datajenisbarang::whereIn('id', $idbrg)->get();
+        foreach ($updatebarang as $k => $v){
+          $v->stok = $upstok['stok'];
+          $v->save();
+        }
+      }
       $transaksidagang = Transaksidagang::insert($value);
 
-      return redirect('transaksidagang')->with(['success' => 'Transaksi berhasil diproses']);
+      return redirect('transaksidagang')->with(['success' => 'Transaksi berhasil diproses']);      
     }
 }
