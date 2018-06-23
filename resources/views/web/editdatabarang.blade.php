@@ -25,7 +25,7 @@
     <li><a class="waves-effect black-text" href="/">Home</a></li>
     <li><a class="waves-effect black-text" href="/regmember">Register member</a></li>
     <li><a class="waves-effect black-text" href="/transmember">Transaksi member</a></li>
-    <li><a class="waves-effect black-text" href="transaksidagang">Transaksi dagang</a></li>
+    <li><a class="waves-effect black-text" href="/transaksidagang">Transaksi dagang</a></li>
     <li><a class="waves-effect black-text" href="/datatransaksi">Data transaksi member</a></li>
     <li><a class="waves-effect black-text" href="#!">Data transaksi dagang</a></li>
     <li><a class="waves-effect black-text" href="/datamember">Data member</a></li>
@@ -48,7 +48,7 @@
   <input name="_method" type="hidden" value="PUT">
   <div class="row">
     <div class="input-field col s12 m6 l6">
-      <input name="namabarang" id="namabarang" value="{{ $barang->namabarang }}" type="text" class="validate">
+      <input name="namabarang" id="namabarang" value="{{ $barang->namabarang }}" type="text" class="validate" autocomplete="off">
       <label for="namabarang">Nama Barang</label>
 
     </div>
@@ -61,7 +61,7 @@
 
   <div class="row">
     <div class="input-field col s12 m6 l6">
-      <input name="harga" id="harga" value="{{ $barang->harga }}" type="text" class="validate">
+      <input name="harga" id="harga" value="{{ $barang->harga }}" type="text" class="validate" autocomplete="off">
       <label for="harga">Harga</label>
 
     </div>
@@ -74,7 +74,7 @@
 
   <div class="row">
     <div class="input-field col s12 m6 l6">
-      <input name="stok" id="stok" value="{{ $barang->stok }}" type="text" class="validate">
+      <input name="stok" id="stok" value="{{ $barang->stok }}" type="text" class="validate" autocomplete="off">
       <label for="stok">Jumlah stok</label>
     </div>
     <div class="col s12 m6 l6">

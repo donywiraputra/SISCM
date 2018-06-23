@@ -61,13 +61,12 @@ class DatabarangController extends Controller
     {
       $this->validate($request,
       [
-        'namabarang'=> 'required|unique:jenisbarang,namabarang',
+        'namabarang'=> 'required',
         'harga'=> 'required|numeric',
         'stok'=> 'required|numeric'
       ],
       [
         'namabarang.required'=> 'Nama barang harus diisi',
-        'namabarang.unique'=> 'Barang sudah ada',
         'harga.required'=> 'Harga harus diisi',
         'harga.numeric'=> 'Harga harus berupa angka',
         'stok.required'=> 'Stok harus diisi',
