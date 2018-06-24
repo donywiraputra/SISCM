@@ -58,6 +58,9 @@ Route::get('getsubtotal', 'TransaksidagangController@subTotalDagang');
 Route::get('deletelist', 'TransaksidagangController@deleteList');
 Route::post('/transaksidagang/posttransaksi', 'TransaksidagangController@insertTransaksiDagang');
 Route::get('datatransdagang', 'DatatransdagangController@getDataTransDagang');
+Route::get('/datatransdagang/page', 'DatatransdagangController@tabelTransDagang');
+Route::get('/datatransdagang/{id}/delete', 'DatatransdagangController@deleteDataTransDagang');
+Route::get('/datatransdagang/multidelete', 'DatatransdagangController@multiDeleteDataDagang');
 Route::get('logout', function()
   {
     Auth::logout();

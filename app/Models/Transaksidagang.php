@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Transaksidagang extends Model
 {
@@ -13,5 +14,10 @@ class Transaksidagang extends Model
   public function transaksiDagang()
   {
     return $this->belongsTo('App\Models\Datajenisbarang', 'id');
+  }
+
+  public function getCreatedAtAttribute($value)
+  {
+    return Carbon::parse($value)->addHour(8)->format('d M Y h:i a');
   }
 }

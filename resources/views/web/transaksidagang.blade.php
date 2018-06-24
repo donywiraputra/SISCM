@@ -27,7 +27,7 @@
     <li><a class="waves-effect black-text" href="/transmember">Transaksi member</a></li>
     <li class="active cyan lighten-5"><a class="waves-effect black-text" href="/transaksidagang">Transaksi dagang</a></li>
     <li><a class="waves-effect black-text" href="/datatransaksi">Data transaksi member</a></li>
-    <li><a class="waves-effect black-text" href="#!">Data transaksi dagang</a></li>
+    <li><a class="waves-effect black-text" href="/datatransdagang">Data transaksi dagang</a></li>
     <li><a class="waves-effect black-text" href="/datamember">Data member</a></li>
     <li><a class="waves-effect black-text" href="/databarang">Data barang</a></li>
     <li><a class="sidenav-close hide-on-large-only">Tutup</a></li>
@@ -124,6 +124,7 @@
     </div>
   </div>
 
+</div>
 </div>
 </div>
 </div>
@@ -243,7 +244,7 @@ $('#autocomplete-input').change(function(){
     // validasi pembayaran
     $('#bayar').keyup(function(){
       var uang = $(this).val();
-      console.log(total);
+      
       if(uang == total){
         $('#pesan').html('<b class="light-green-text text-accent-4">Uang pas</b>').fadeIn(0);
         $('#simpan').attr('class', 'waves-effect waves-light btn');

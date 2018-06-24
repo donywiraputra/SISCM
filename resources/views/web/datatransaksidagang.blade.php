@@ -23,13 +23,13 @@
 
     <li><div class="divider"></div></li>
     <li><a class="waves-effect black-text" href="/">Home</a></li>
-    <li><a class="waves-effect black-text" href="regmember">Register member</a></li>
-    <li><a class="waves-effect black-text" href="transmember">Transaksi member</a></li>
-    <li><a class="waves-effect black-text" href="transaksidagang">Transaksi dagang</a></li>
-    <li><a class="waves-effect black-text" href="datatransaksi">Data transaksi member</a></li>
-    <li class="active cyan lighten-5"><a class="waves-effect black-text" href="#!">Data transaksi dagang</a></li>
-    <li><a class="waves-effect black-text" href="datamember">Data member</a></li>
-    <li><a class="waves-effect black-text" href="databarang">Data barang</a></li>
+    <li><a class="waves-effect black-text" href="/regmember">Register member</a></li>
+    <li><a class="waves-effect black-text" href="/transmember">Transaksi member</a></li>
+    <li><a class="waves-effect black-text" href="/transaksidagang">Transaksi dagang</a></li>
+    <li><a class="waves-effect black-text" href="/datatransaksi">Data transaksi member</a></li>
+    <li class="active cyan lighten-5"><a class="waves-effect black-text" href="/datatransdagang">Data transaksi dagang</a></li>
+    <li><a class="waves-effect black-text" href="/datamember">Data member</a></li>
+    <li><a class="waves-effect black-text" href="/databarang">Data barang</a></li>
     <li><a class="sidenav-close hide-on-large-only">Tutup</a></li>
   </ul>
 @endsection
@@ -52,13 +52,13 @@
     @if ($message = Session::get('success'))
       <span class="sukses light-green-text text-accent-4"><b>{{$message}}</b></span>
     @endif
-      <span id="warning" class="red-text"></span>
+      <span id="warning"></span>
       <div class="right">
         <ul>
           <li><a href="#!" class="btn waves-effect waves-teal btn-flat right">Print view</a></li>
-          <li><a href="/databarang/tambahdatabarang" class="btn waves-effect waves-teal btn-flat right">Tambah barang baru</a></li>
         <ul>
       </div>
+
 </div>
 
 </div>
@@ -66,5 +66,96 @@
 <div class="tabelbarang">
     @include('layouts.tabeldatatransaksidagang')
 </div>
+
+@endsection
+
+@section('script')
+<script>
+
+$("#caridata").on("change", function() {
+  var value = $(this).val().toLowerCase();
+
+    $.ajax({
+      url : '/datatransdagang/page',
+      data: {insert: value}
+    }).done(function(data1){
+      var transdata = data1;
+      var pesan = '<b>Data tidak tersedia.</b>'
+      $('.tabelbarang').html(data1);
+      $(document).ready(function(){
+         $('.modal').modal({
+            dismissible: false
+         });
+       });
+          var info = $('#infodata').html();
+          if( info == 'No. <b></b> - <b></b> | Total <b>0</b> data' ){
+          $('#warning').html(pesan).fadeIn(1, function(){
+              $('#warning').html(pesan).fadeOut(5000);
+            });
+          }
+
+      })
+})
+
+$(document).on('click','.pagination a',function(e){
+  e.preventDefault();
+  var page = $(this).attr('href').split('page=')[1];
+  searchPage(page);
+  })
+
+  function searchPage(page)
+  {
+    var value = $('#caridata').val().toLowerCase();
+    $.ajax({
+      url : '/datatransdagang/page?page='+page,
+      data: {insert: value}
+    }).done(function(data){
+
+      $('.tabelbarang').html(data);
+      location.hash=page;
+      $(document).ready(function(){
+         $('.modal').modal({
+            dismissible: false
+         });
+       });
+    })
+  }
+
+  $(document).ready(function(){
+     $('.modal').modal({
+        dismissible: false
+     });
+     var total = $('#total').text();
+     if(!(total == 0)){
+       $('#deletetrig').removeAttr("disabled");
+     }
+   });
+
+$('#deletetrig').cli
+
+$(document).on('click','#deletebtn', function(){
+  var value = $('#caridata').val().toLowerCase();
+  $.ajax({
+    url : '/datatransdagang/multidelete',
+    data: {insert: value}
+  }).done(function(data){
+
+    var pesan = '<b class="light-green-text text-accent-4">Data berhasil dihapus</b>'
+    var pesan2 = '<b class="red-text">Data gagal dihapus</b>'
+    if ( data == 'sukses'){
+      $('#warning').html(pesan).fadeIn(1, function(){
+          $('#warning').html(pesan).fadeOut(3000, function(){
+            location.reload(true);
+          });
+        });
+    }else{
+      $('#warning').html(pesan2).fadeIn(1, function(){
+          $('#warning').html(pesan2).fadeOut(3000);
+        });
+    }
+  })
+})
+
+</script>
 
 @endsection
