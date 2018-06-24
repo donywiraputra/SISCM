@@ -61,6 +61,7 @@ Route::get('datatransdagang', 'DatatransdagangController@getDataTransDagang');
 Route::get('/datatransdagang/page', 'DatatransdagangController@tabelTransDagang');
 Route::get('/datatransdagang/{id}/delete', 'DatatransdagangController@deleteDataTransDagang');
 Route::get('/datatransdagang/multidelete', 'DatatransdagangController@multiDeleteDataDagang');
+Route::get('pengeluaran', 'PengeluaranController@getPengeluaran');
 Route::get('logout', function()
   {
     Auth::logout();

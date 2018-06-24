@@ -1,6 +1,9 @@
 <div class="container">
   <div class="row right">
-  <span id="infodata">No. <b>{{ $databarang->firstItem() }}</b> - <b>{{ $databarang->lastItem() }}</b> | Total <b>{{ $databarang->total() }}</b> data</span>
+    <div class="row">
+      <a href="/databarang/tambahdatabarang" style="border: 1px solid #e0e0e0;" class="btn waves-effect waves-teal btn-flat right">Tambah barang baru</a>
+    </div>
+  <span id="infodata" class="right">No. <b>{{ $databarang->firstItem() }}</b> - <b>{{ $databarang->lastItem() }}</b> | Total <b>{{ $databarang->total() }}</b> data</span>
   </div>
 </div>
 

@@ -30,6 +30,7 @@
     <li><a class="waves-effect black-text" href="datatransdagang">Data transaksi dagang</a></li>
     <li><a class="waves-effect black-text" href="datamember">Data member</a></li>
     <li class="active cyan lighten-5"><a class="waves-effect black-text" href="databarang">Data barang</a></li>
+    <li><a class="waves-effect black-text" href="pengeluaran">Data pengeluaran</a></li>
     <li><a class="sidenav-close hide-on-large-only">Tutup</a></li>
   </ul>
 @endsection
@@ -56,7 +57,6 @@
       <div class="right">
         <ul>
           <li><a href="#!" class="btn waves-effect waves-teal btn-flat right">Print view</a></li>
-          <li><a href="/databarang/tambahdatabarang" class="btn waves-effect waves-teal btn-flat right">Tambah barang baru</a></li>
         <ul>
       </div>
 </div>

@@ -27,9 +27,10 @@
     <li><a class="waves-effect black-text" href="/transmember">Transaksi member</a></li>
     <li><a class="waves-effect black-text" href="/transaksidagang">Transaksi dagang</a></li>
     <li><a class="waves-effect black-text" href="/datatransaksi">Data transaksi member</a></li>
-    <li><a class="waves-effect black-text" href="datatransdagang">Data transaksi dagang</a></li>
+    <li><a class="waves-effect black-text" href="/datatransdagang">Data transaksi dagang</a></li>
     <li><a class="waves-effect black-text" href="/datamember">Data member</a></li>
     <li class="active cyan lighten-5"><a class="waves-effect black-text" href="/databarang">Data barang</a></li>
+    <li><a class="waves-effect black-text" href="/pengeluaran">Data pengeluaran</a></li>
     <li><a class="sidenav-close hide-on-large-only">Tutup</a></li>
   </ul>
 @endsection
