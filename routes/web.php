@@ -62,6 +62,12 @@ Route::get('/datatransdagang/page', 'DatatransdagangController@tabelTransDagang'
 Route::get('/datatransdagang/{id}/delete', 'DatatransdagangController@deleteDataTransDagang');
 Route::get('/datatransdagang/multidelete', 'DatatransdagangController@multiDeleteDataDagang');
 Route::get('pengeluaran', 'PengeluaranController@getPengeluaran');
+Route::get('pengeluaran/page', 'PengeluaranController@tabelPengeluaran');
+Route::get('catatpengeluaran', 'CatatPengeluaranController@getCatatPengeluaran');
+Route::post('simpanpengeluaran', 'CatatPengeluaranController@catatPengeluaran');
+Route::get('/pengeluaran/{id}/edit', 'PengeluaranController@editPengeluaran');
+Route::put('/pengeluaran/{id}', 'PengeluaranController@updatePengeluaran');
+Route::get('/pengeluaran/{id}/delete', 'PengeluaranController@deletePengeluaran');
 Route::get('logout', function()
   {
     Auth::logout();
