@@ -244,7 +244,18 @@ $('#autocomplete-input').change(function(){
 
     // validasi pembayaran
     $('#bayar').keyup(function(){
-      var uang = $(this).val();
+      var uangconv = $(this).val().replace(/,/g , '');
+      var uang = uangconv*1;
+
+      if(event.which >= 37 && event.which <= 40) return;
+
+      // format number
+      $(this).val(function(index, value) {
+        return value
+        .replace(/\D/g, "")
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+        ;
+      });
 
       if(uang == total){
         $('#pesan').html('<b class="light-green-text text-accent-4">Uang pas</b>').fadeIn(0);
@@ -254,14 +265,11 @@ $('#autocomplete-input').change(function(){
         $('#simpan').attr('class', 'waves-effect waves-light btn disabled');
       }else if(uang > total){
         var kembali = uang - total;
-        var kembaliconv = (kembali/1000).toFixed(3).replace(/\./g, ',');
+        var kembaliconv = (kembali/1000).toFixed(3).replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         $('#pesan').html('<b class="light-green-text text-accent-4">Kembali Rp. '+kembaliconv+'</b>').fadeIn(0);
         $('#simpan').attr('class', 'waves-effect waves-light btn');
       }else if(uang < total){
         $('#pesan').html('<b class="red-text">Uang kurang</b>').fadeIn(0);
-        $('#simpan').attr('class', 'waves-effect waves-light btn disabled');
-      }else if( $.isNumeric(uang) == false ){
-        $('#pesan').html('<b class="red-text">Input bayar harus angka</b>').fadeIn(0);
         $('#simpan').attr('class', 'waves-effect waves-light btn disabled');
       }
     })

@@ -36,7 +36,7 @@
       <!-- Modal Structure -->
         <div id="modal{{ $data->id }}" class="modal">
           <div class="modal-content">
-            <p>Apakah anda yakin ingin menghapus data <b>{{ $data->keterangan }}<b>?</p>
+            <p>Apakah anda yakin ingin menghapus data <b>{{ $data->keterangan }}</b>?</p>
           </div>
           <div class="modal-footer">
             <a class="modal-close waves-effect waves-green btn-flat">Tidak</a>
