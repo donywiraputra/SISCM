@@ -68,6 +68,9 @@ Route::post('simpanpengeluaran', 'CatatPengeluaranController@catatPengeluaran');
 Route::get('/pengeluaran/{id}/edit', 'PengeluaranController@editPengeluaran');
 Route::put('/pengeluaran/{id}', 'PengeluaranController@updatePengeluaran');
 Route::get('/pengeluaran/{id}/delete', 'PengeluaranController@deletePengeluaran');
+Route::get('/laporan', 'LaporanController@getLaporan');
+Route::get('/laporan/data', 'LaporanController@getDataLaporan');
+Route::get('bulanselect', 'LaporanController@selectBulan');
 Route::get('logout', function()
   {
     Auth::logout();

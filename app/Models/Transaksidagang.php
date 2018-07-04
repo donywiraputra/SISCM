@@ -20,4 +20,6 @@ class Transaksidagang extends Model
   {
     return Carbon::parse($value)->addHour(8)->format('d M Y h:i a');
   }
+
+
 }
