@@ -79,6 +79,7 @@ class LaporanController extends Controller
 
         $pengeluaran = Pengeluaran::select('keterangan', DB::raw('SUM(jumlah) as kredit'), 'created_at')
         ->whereBetween('created_at', [$tgldari, $tglsampai])->groupBy('created_at')->get();
+
         foreach ($pengeluaran as $key => $value) {
              $pengeluaran[$key]['debit'] = '';
          }
@@ -88,6 +89,18 @@ class LaporanController extends Controller
 
          $tes = array_merge_recursive($dagang,$member,$kredit);
          ksort($tes);
+
+
+         // foreach ($tes as $key => $v) {
+         //   foreach ($v as $k => $val) {
+         //     $tes[$key]['total']['totaldebit'] = array_sum(array_column($v, 'debit'));
+         //     $tes[$key]['total']['totalkredit'] = array_sum(array_column($v, 'kredit'));
+         //     dd($tes);
+         //   }
+         //
+         // }
+
+
 
          return view('web.showlaporan', compact('tes'));
       }
@@ -132,7 +145,7 @@ class LaporanController extends Controller
          $tes = array_merge_recursive($dagang,$member,$kredit);
          ksort($tes);
 
-         // dd($tes);
+
          return view('web.showlaporanbulan', compact('tes'));
       }
     }

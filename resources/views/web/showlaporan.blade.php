@@ -103,7 +103,7 @@
 <div class="col s12">
   @foreach ($tes as $key => $value)
 
-  <p style="padding: 5px; background-color: #fafafa; ">{{ $key }}</p>
+  <p id="hari" style="padding: 5px; background-color: #fafafa; ">{{ $key }}</p>
   <table>
 
         <thead>
@@ -116,18 +116,19 @@
         </thead>
 
         <tbody>
-          @foreach ($value as $k => $v)
-          <tr>
-            <td>{{ $v['keterangan'] }}</td>
-            <td>{{ $v['debit'] }}</td>
-            <td>{{ $v['kredit'] }}</td>
+          @foreach ($value as $v)
 
+          <tr id="laporan">
+            <td>{{ $v['keterangan'] }}</td>
+            <td id="debit">{{ $v['debit'] }}</td>
+            <td id="kredit">{{ $v['kredit'] }}</td>
           </tr>
+
           @endforeach
-          <tr>
+          <tr id="total">
             <td><b>Total</b></td>
-            <td></td>
-            <td></td>
+            <td id="totaldebit">{{ array_sum(array_column($value, 'debit')) }}</td>
+            <td id="totalkredit">{{ array_sum(array_column($value, 'kredit')) }}</td>
 
           </tr>
         </tbody>
@@ -176,5 +177,58 @@ $('input[type=radio][name=group1]').change(function() {
 
 });
 
+$(document).ready(function(){
+  $('#laporan #debit').each(function(){
+    var debit = $(this).text();
+
+    var convdebit = debit.replace(/\D/g, "")
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    if ( debit == '' ){
+      $(this).text('');
+    }else{
+    $(this).text('Rp. '+convdebit);
+  }
+  })
+
+  $('#laporan #kredit').each(function(){
+    var kredit = $(this).text();
+
+    var convkredit = kredit.replace(/\D/g, "")
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    if ( kredit == '' ){
+      $(this).text('');
+    }else{
+    $(this).text('Rp. '+convkredit);
+  }
+  })
+
+  $('#total #totaldebit').each(function(){
+    var totaldebit = $(this).text();
+
+    var convtotaldeb = totaldebit.replace(/\D/g, "")
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    if ( totaldebit == '0' ){
+      $(this).text('');
+    }else{
+    $(this).text('Rp. '+convtotaldeb);
+  }
+  })
+
+  $('#total #totalkredit').each(function(){
+    var totalkredit = $(this).text();
+
+    var convtotalkre = totalkredit.replace(/\D/g, "")
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    if ( totalkredit == '0' ){
+      $(this).text('');
+    }else{
+    $(this).text('Rp. '+convtotalkre);
+  }
+  })
+  // var sumstring = sum.toString();
+  // var sumformat = sumstring.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  //
+  //   $('#totaldebit').text('Rp. '+sumformat);
+})
 </script>
 @endsection

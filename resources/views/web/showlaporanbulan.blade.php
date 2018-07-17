@@ -117,17 +117,17 @@
 
         <tbody>
           @foreach ($value as $k => $v)
-          <tr>
+          <tr id="laporan">
             <td>{{ $v['keterangan'] }} | {{date('d F Y', strtotime($v['tanggal']))}}</td>
-            <td>{{ $v['debit'] }}</td>
-            <td>{{ $v['kredit'] }}</td>
+            <td id="debit">{{ $v['debit'] }}</td>
+            <td id="kredit">{{ $v['kredit'] }}</td>
 
           </tr>
           @endforeach
           <tr>
             <td><b>Total</b></td>
-            <td></td>
-            <td></td>
+            <td id="totaldebit"></td>
+            <td id="totalkredit"></td>
 
           </tr>
         </tbody>
@@ -176,6 +176,47 @@ $('input[type=radio][name=group1]').change(function() {
     })
 
 });
+
+$(document).ready(function(){
+  var sumdebit = 0;
+  var sumkredit = 0;
+  $('#laporan #debit').each(function(){
+    var debit = $(this).text();
+    var convdebit = debit.replace(/\D/g, "")
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    if ( debit == '' ){
+      $(this).text('');
+    }else{
+    $(this).text('Rp. '+convdebit);
+  }
+  var intdebit = debit * 1;
+  sumdebit += intdebit;
+
+  })
+
+  $('#laporan #kredit').each(function(){
+    var kredit = $(this).text();
+    var convkredit = kredit.replace(/\D/g, "")
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    if ( kredit == '' ){
+      $(this).text('');
+    }else{
+    $(this).text('Rp. '+convkredit);
+  }
+  var intkredit = kredit * 1;
+  sumkredit += intkredit;
+
+  })
+
+  var sumstringd = sumdebit.toString();
+  var sumformatd = sumstringd.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  var sumstringk = sumkredit.toString();
+  var sumformatk = sumstringk.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+    $('#totaldebit').text('Rp. '+sumformatd);
+    $('#totalkredit').text('Rp. '+sumformatk);
+})
+
 
 </script>
 @endsection
