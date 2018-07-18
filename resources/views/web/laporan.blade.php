@@ -44,9 +44,9 @@
 </div>
 <div class="divider"></div>
 <br>
-<form action="{{url(action('LaporanController@getDataLaporan'))}}" method="get">
 <div class="container">
 
+<form action="{{url(action('LaporanController@getDataLaporan'))}}" method="get">
 <div class="row">
   <p>Pilih berdasarkan:</p>
   <div class="col s12">
@@ -90,18 +90,31 @@
     </div>
   </div>
 </div>
-</form>
-<div class="col s12">
-  <div class="row">
-    <button class="waves-effect waves-light btn-large" type="submit">Lanjut</button>
+
+<div class="row">
+  <div class="col s12">
+      <div>
+        <button class="waves-effect waves-light btn" type="submit">Cari</button>
+      </div>
+      @if ($message = Session::get('error'))
+      <div class="center">
+        <span class="sukses red-text"><b>{{$message}}</b></span>
+      </div>
+      @endif
   </div>
 </div>
+</form>
 </div>
+
 
 @endsection
 
 @section('script')
 <script>
+$('*').click(function(){
+  $('.sukses').fadeOut(1000);
+});
+
 $('.datepicker').datepicker({
   yearRange: 70,
   format: 'yyyy-mm-dd'

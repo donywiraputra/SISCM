@@ -74,8 +74,7 @@
 
   <div class="row">
     <div class="col s12">
-      <div class="center">
-        <a id="cancel" class="waves-effect waves-light btn">Cancel</a>&nbsp;
+      <div class="right">
         <a id="catat" class="waves-effect waves-light btn">Catat</a>&nbsp;
         <a id="simpan" class="waves-effect waves-light btn disabled">Simpan</a>
       </div>

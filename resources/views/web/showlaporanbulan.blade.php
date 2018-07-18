@@ -90,12 +90,21 @@
     </div>
   </div>
 </div>
-</form>
-<div class="col s12">
-  <div class="row">
-    <button class="waves-effect waves-light btn-large" type="submit">Lanjut</button>
+
+<div class="row">
+  <div class="col s12">
+      <div>
+        <button class="waves-effect waves-light btn" type="submit">Cari</button>
+      </div>
+      @if ($message = Session::get('error'))
+      <div class="center">
+        <span class="sukses red-text"><b>{{$message}}</b></span>
+      </div>
+      @endif
   </div>
 </div>
+</form>
+
 
 
 
@@ -103,7 +112,7 @@
 <div class="col s12">
   @foreach ($tes as $key => $value)
 
-  <p class="center" style="padding: 5px; background-color: #fafafa; "><b>{{ $key }}</b></p>
+  <p class="center" style="padding: 5px; background-color: #f5f5f5 ; "><b>{{ $key }}</b></p>
   <table>
 
         <thead>
@@ -118,13 +127,13 @@
         <tbody>
           @foreach ($value as $k => $v)
           <tr id="laporan">
-            <td>{{ $v['keterangan'] }} | {{date('d F Y', strtotime($v['tanggal']))}}</td>
+            <td>{{date('d F Y', strtotime($v['tanggal']))}} <b>|</b> {{ $v['keterangan'] }}</td>
             <td id="debit">{{ $v['debit'] }}</td>
             <td id="kredit">{{ $v['kredit'] }}</td>
 
           </tr>
           @endforeach
-          <tr>
+          <tr style="background-color: #e0f7fa;">
             <td><b>Total</b></td>
             <td id="totaldebit"></td>
             <td id="totalkredit"></td>
@@ -135,6 +144,7 @@
       </table>
       <br>
  @endforeach
+</div>
 </div>
 </div>
 </div>

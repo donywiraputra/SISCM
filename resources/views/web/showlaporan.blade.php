@@ -90,12 +90,21 @@
     </div>
   </div>
 </div>
-</form>
-<div class="col s12">
-  <div class="row">
-    <button class="waves-effect waves-light btn-large" type="submit">Lanjut</button>
+
+<div class="row">
+  <div class="col s12">
+      <div>
+        <button class="waves-effect waves-light btn" type="submit">Cari</button>
+      </div>
+      @if ($message = Session::get('error'))
+      <div class="center">
+        <span class="sukses red-text"><b>{{$message}}</b></span>
+      </div>
+      @endif
   </div>
 </div>
+</form>
+
 
 
 
@@ -103,7 +112,7 @@
 <div class="col s12">
   @foreach ($tes as $key => $value)
 
-  <p id="hari" style="padding: 5px; background-color: #fafafa; ">{{ $key }}</p>
+  <p class="center" id="hari" style="padding: 5px; background-color: #f5f5f5 ; "><b>{{ $key }}</b></p>
   <table>
 
         <thead>
@@ -125,7 +134,7 @@
           </tr>
 
           @endforeach
-          <tr id="total">
+          <tr id="total" style="background-color: #e0f7fa;">
             <td><b>Total</b></td>
             <td id="totaldebit">{{ array_sum(array_column($value, 'debit')) }}</td>
             <td id="totalkredit">{{ array_sum(array_column($value, 'kredit')) }}</td>
@@ -139,6 +148,8 @@
 </div>
 </div>
 </div>
+</div>
+
 @endsection
 
 @section('script')

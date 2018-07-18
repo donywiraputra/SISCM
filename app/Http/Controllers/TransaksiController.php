@@ -42,7 +42,7 @@ class TransaksiController extends Controller
     $memberdata = Member::join('jeniskelamin', 'member.jnskelamin', '=', 'jeniskelamin.idkelamin')
     ->join('katagorimember', 'member.id_katmember', '=', 'katagorimember.idkatmember')
     ->select('member.*', 'jeniskelamin.kelamin', 'katagorimember.katmember')
-    ->where('member.namamember', '=', $a)->first(); 
+    ->where('member.namamember', '=', $a)->first();
     return response()->json($memberdata);
   }
 
@@ -53,8 +53,7 @@ class TransaksiController extends Controller
     $jmlh = $postbiaya->biaya;
 
     return response()->json($jmlh);
-  //  return $jmlh;
-  //  dd($postbiaya);
+
   }
 
   public function postTrans(Request $request)
@@ -88,7 +87,6 @@ class TransaksiController extends Controller
     }
 
     return redirect('transmember')->with(['success' => 'Transaksi berhasil diproses']);
-    //dd($datatrans);
 
   }
 

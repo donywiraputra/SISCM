@@ -19,7 +19,7 @@ class DatabarangController extends Controller
       ->select('jenisbarang.*', 'users.namauser')
       ->orderBy('jenisbarang.updated_at','desc')
       ->paginate(8);
-      //dd($databarang);
+      
       return view('web.databarang', compact('databarang'));
     }
 
