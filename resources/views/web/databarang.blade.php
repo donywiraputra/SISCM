@@ -26,11 +26,21 @@
     <li><a class="waves-effect black-text" href="regmember">Register member</a></li>
     <li><a class="waves-effect black-text" href="transmember">Transaksi member</a></li>
     <li><a class="waves-effect black-text" href="transaksidagang">Transaksi dagang</a></li>
-    <li><a class="waves-effect black-text" href="datatransaksi">Data transaksi member</a></li>
-    <li><a class="waves-effect black-text" href="datatransdagang">Data transaksi dagang</a></li>
-    <li><a class="waves-effect black-text" href="datamember">Data member</a></li>
-    <li class="active cyan lighten-5"><a class="waves-effect black-text" href="databarang">Data barang</a></li>
-    <li><a class="waves-effect black-text" href="pengeluaran">Data pengeluaran</a></li>
+    <ul class="collapsible">
+    <li class="active">
+      <div class="collapsible-header" style="padding-left: 32px; font-size: 14px;
+    font-weight: 500;">Master data</div>
+      <div class="collapsible-body">
+        <ul>
+          <li><a class="waves-effect black-text" style="padding-left: 45px;" href="datatransaksi">Data transaksi member</a></li>
+          <li><a class="waves-effect black-text" style="padding-left: 45px;" href="datatransdagang">Data transaksi dagang</a></li>
+          <li><a class="waves-effect black-text" style="padding-left: 45px;" href="datamember">Data member</a></li>
+          <li class="active cyan lighten-5"><a class="waves-effect black-text" style="padding-left: 45px;" href="databarang">Data barang</a></li>
+          <li><a class="waves-effect black-text" style="padding-left: 45px;" href="pengeluaran">Data pengeluaran</a></li>
+        </ul>
+      </div>
+    </li>
+  </ul>
     <li><a class="waves-effect black-text" href="laporan">Laporan</a></li>
     <li><a class="sidenav-close hide-on-large-only">Tutup</a></li>
   </ul>
