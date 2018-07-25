@@ -34,6 +34,7 @@ style="padding-left: 45px;" @extends('layouts.master')
         <ul>
           <li><a class="waves-effect black-text" style="padding-left: 45px;" href="datatransaksi">Data transaksi member</a></li>
           <li><a class="waves-effect black-text" style="padding-left: 45px;" href="datatransdagang">Data transaksi dagang</a></li>
+          <li><a class="waves-effect black-text" style="padding-left: 45px;" href="datajenistransaksi">Data jenis transaksi</a></li>
           <li><a class="waves-effect black-text" style="padding-left: 45px;" href="datamember">Data member</a></li>
           <li><a class="waves-effect black-text" style="padding-left: 45px;" href="databarang">Data barang</a></li>
           <li><a class="waves-effect black-text" style="padding-left: 45px;" href="pengeluaran">Data pengeluaran</a></li>
@@ -109,7 +110,7 @@ style="padding-left: 45px;" @extends('layouts.master')
     </div>
     <div class="row">
       <div class="col s12 m6 l6">
-      <a id="cancel" class="waves-effect waves-light btn-large">Cancel</a>&nbsp;
+      <a href="/transmember" id="cancel" class="waves-effect waves-light btn-large">Cancel</a>&nbsp;
       <a id="proses" class="waves-effect waves-light btn-large disabled">Proses</a>
     </div>
     <div class="col s12 m6 l6">
@@ -242,8 +243,20 @@ $('#slcttrs').change(function(){
 
     //validasi kolom bayar
     $('#bayartunai').keyup(function(){
+      var uangconv = $(this).val().replace(/,/g , '');
+      var bayar = uangconv*1;
+
+      if(event.which >= 37 && event.which <= 40) return;
+
+      // format number
+      $(this).val(function(index, value) {
+        return value
+        .replace(/\D/g, "")
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+        ;
+      });
       $('#pesan').fadeIn(1);
-      var bayar = $(this).val();
+
       var inputmbr = $('#autocomplete-input').val();
 
       if( inputmbr == '' ){

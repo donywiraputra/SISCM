@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Models\Role;
 
 class User extends Authenticatable
 {
@@ -30,8 +31,18 @@ class User extends Authenticatable
 
     public function role()
     {
-      return $this->belongsTo('Role', 'roles_id');
+      return $this->belongsTo(Role::class, 'roles_id');
     }
 
     public $timestamps = false;
+
+    public function viewRole($namarole)
+    {
+      
+      if($this->role->namarole == $namarole){
+        return true;
+      }
+
+      return false;
+    }
 }

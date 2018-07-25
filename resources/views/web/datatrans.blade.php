@@ -34,6 +34,7 @@ style="padding-left: 45px;" @extends('layouts.master')
         <ul>
           <li class="active cyan lighten-5"><a class="waves-effect black-text" style="padding-left: 45px;" href="datatransaksi">Data transaksi member</a></li>
           <li><a class="waves-effect black-text" style="padding-left: 45px;" href="datatransdagang">Data transaksi dagang</a></li>
+          <li><a class="waves-effect black-text" style="padding-left: 45px;" href="datajenistransaksi">Data jenis transaksi</a></li>
           <li><a class="waves-effect black-text" style="padding-left: 45px;" href="datamember">Data member</a></li>
           <li><a class="waves-effect black-text" style="padding-left: 45px;" href="databarang">Data barang</a></li>
           <li><a class="waves-effect black-text" style="padding-left: 45px;" href="pengeluaran">Data pengeluaran</a></li>

@@ -21,7 +21,7 @@ class DataTransController extends Controller
     $transview = Datatransaksi::join('jenistransaksi', 'datatransaksi.idjenistransaksi', '=', 'jenistransaksi.idjnstransaksi')
     ->join('member', 'datatransaksi.id_member', '=', 'member.idmember')
     ->join('users', 'datatransaksi.iduser', '=', 'users.id')
-    ->select('datatransaksi.*', 'jenistransaksi.namatransaksi', 'jenistransaksi.biaya', 'member.namamember', 'users.namauser')
+    ->select('datatransaksi.*', 'jenistransaksi.namatransaksi', 'member.namamember', 'users.namauser')
     ->orderBy('datatransaksi.updated_at','desc')
     ->paginate(8);
      //dd($transview);
@@ -36,7 +36,7 @@ class DataTransController extends Controller
     $transview = Datatransaksi::join('jenistransaksi', 'datatransaksi.idjenistransaksi', '=', 'jenistransaksi.idjnstransaksi')
     ->join('member', 'datatransaksi.id_member', '=', 'member.idmember')
     ->join('users', 'datatransaksi.iduser', '=', 'users.id')
-    ->select('datatransaksi.*', 'jenistransaksi.namatransaksi', 'jenistransaksi.biaya', 'member.namamember', 'users.namauser')
+    ->select('datatransaksi.*', 'jenistransaksi.namatransaksi', 'member.namamember', 'users.namauser')
     ->where('jenistransaksi.namatransaksi', 'LIKE', '%'.$tes.'%')
     ->orWhere('jenistransaksi.biaya', 'LIKE', '%'.$tes.'%')
     ->orWhere('member.namamember', 'LIKE', '%'.$tes.'%')
@@ -50,7 +50,7 @@ class DataTransController extends Controller
     $transview = Datatransaksi::join('jenistransaksi', 'datatransaksi.idjenistransaksi', '=', 'jenistransaksi.idjnstransaksi')
     ->join('member', 'datatransaksi.id_member', '=', 'member.idmember')
     ->join('users', 'datatransaksi.iduser', '=', 'users.id')
-    ->select('datatransaksi.*', 'jenistransaksi.namatransaksi', 'jenistransaksi.biaya', 'member.namamember', 'users.namauser')
+    ->select('datatransaksi.*', 'jenistransaksi.namatransaksi', 'member.namamember', 'users.namauser')
     ->orderBy('datatransaksi.updated_at','desc')
     ->paginate(8);
     return view('layouts.tabeltransaksi',compact('transview'));
@@ -62,7 +62,7 @@ class DataTransController extends Controller
     $trans = Datatransaksi::join('jenistransaksi', 'datatransaksi.idjenistransaksi', '=', 'jenistransaksi.idjnstransaksi')
     ->join('member', 'datatransaksi.id_member', '=', 'member.idmember')
     ->join('users', 'datatransaksi.iduser', '=', 'users.id')
-    ->select('datatransaksi.*', 'jenistransaksi.namatransaksi', 'jenistransaksi.biaya', 'member.namamember', 'users.namauser')
+    ->select('datatransaksi.*', 'jenistransaksi.namatransaksi', 'member.namamember', 'users.namauser')
     ->where('datatransaksi.idtransaksi', '=', $id)->first();
     $fitness = Jnstransaksi::where('namatransaksi', 'LIKE', '%fitness%')->get();
     $aerobic = Jnstransaksi::where('namatransaksi', 'LIKE', '%aerobic%')->get();

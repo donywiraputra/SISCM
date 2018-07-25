@@ -8,6 +8,7 @@ class Jnstransaksi extends Model
 {
     protected $primaryKey = 'idjnstransaksi';
     protected $table = 'jenistransaksi';
+    public $timestamps = false;
 
     public function dataTransaksi()
     {

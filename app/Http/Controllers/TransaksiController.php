@@ -60,15 +60,17 @@ class TransaksiController extends Controller
   {
     $datatrans = new Datatransaksi();
     $nama = $request->namambr;
+    $gettrans = $request->jtrans;
+    $trans = Jnstransaksi::where('idjnstransaksi', $gettrans)->first();
     $idmbr = Member::where('namamember', $nama)->first();
     $datatrans->id_member = $idmbr->idmember;
     $datatrans->idjenistransaksi = $request->jtrans;
+    $datatrans->biaya = $trans->biaya;
     $userid = Auth::user();
     $datatrans->iduser = $userid->id;
     $datatrans->save();
 
-    $gettrans = $request->jtrans;
-    $trans = Jnstransaksi::where('idjnstransaksi', $gettrans)->first();
+
     $month = $trans->bulan;
     $null = null;
     if($month == null){
