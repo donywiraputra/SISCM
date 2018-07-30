@@ -34,11 +34,11 @@
         <ul>
           <li><a class="waves-effect black-text" style="padding-left: 45px;" href="datatransaksi">Data transaksi member</a></li>
           <li><a class="waves-effect black-text" style="padding-left: 45px;" href="datatransdagang">Data transaksi dagang</a></li>
-          <li class="active cyan lighten-5"><a class="waves-effect black-text" style="padding-left: 45px;" href="datajenistransaksi">Data jenis transaksi</a></li>
+          <li><a class="waves-effect black-text" style="padding-left: 45px;" href="datajenistransaksi">Data jenis transaksi</a></li>
           <li><a class="waves-effect black-text" style="padding-left: 45px;" href="datamember">Data member</a></li>
           <li><a class="waves-effect black-text" style="padding-left: 45px;" href="databarang">Data barang</a></li>
           <li><a class="waves-effect black-text" style="padding-left: 45px;" href="pengeluaran">Data pengeluaran</a></li>
-          <li><a class="waves-effect black-text" style="padding-left: 45px;" href="datauser">Data user</a></li>
+          <li class="active cyan lighten-5"><a class="waves-effect black-text" style="padding-left: 45px;" href="datauser">Data user</a></li>
         </ul>
       </div>
     </li>
@@ -51,7 +51,7 @@
 @section('content')
 <div class="container">
 <div class="row">
-  <h4 class="center-align">Data Jenis Transaksi</h4>
+  <h4 class="center-align">Data User</h4>
 </div>
 </div>
 <div class="divider"></div>
@@ -70,18 +70,34 @@
     <table class="responsive-table highlight">
       <thead>
         <tr>
-            <th>Nama transaksi</th>
-            <th>Biaya</th>
+            <th>Nama user</th>
+            <th>Nama lengkap</th>
+            <th>Level user</th>
+            <th></th>
             <th></th>
         </tr>
       </thead>
       <tbody id="transdata">
-        @foreach($datajnstrans as $data)
+        @foreach($getuser as $datauser)
         <tr>
-          <td>{{ $data->namatransaksi }}</td>
-          <td>Rp. {{ number_format($data->biaya) }}</td>
-          <td><a href="/datajenistransaksi/{{ $data->idjnstransaksi }}/editbiaya" class="btn waves-effect waves-teal btn-flat">Edit</a></td>
+          <td>{{ $datauser->namauser }}</td>
+          <td>{{ $datauser->namalengkap }}</td>
+          <td>{{ $datauser->namarole }}</td>
+          <td><a href="datauser/{{ $datauser->id }}/edit" class="btn waves-effect waves-teal btn-flat">Edit</a></td>
+          <td><a data-target="modal{{ $datauser->id }}" id="modalalert" class="btn modal-trigger waves-effect waves-teal btn-flat">Hapus</a></td>
         </tr>
+
+        <!-- Modal Structure -->
+          <div id="modal{{ $datauser->id }}" class="modal">
+            <div class="modal-content">
+
+              <p>Apakah anda yakin ingin menghapus data user <b>{{ $datauser->namauser }}</b>?</p>
+            </div>
+            <div class="modal-footer">
+              <a class="modal-close waves-effect waves-green btn-flat">Tidak</a>
+              <a href="/datauser/{{ $datauser->id }}/delete" class="modal-close waves-effect waves-green btn-flat">Ya</a>
+            </div>
+          </div>
         @endforeach
       </tbody>
     </table>
@@ -91,12 +107,17 @@
 
 
 @endsection
+
 @section('script')
 <script>
 $(document).ready(function(){
-$('*').click(function(){
-  $('#sukses').fadeOut(1000);
-});
+   $('.modal').modal({
+      dismissible: false
+   });
+
+  $('*').click(function(){
+    $('#sukses').fadeOut(1000);
+  })
 });
 </script>
 @endsection

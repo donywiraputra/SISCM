@@ -52,7 +52,7 @@
                       <select name="userlevel" value="{{ old('userlevel' )}}">
                           <option value="" disabled selected>Pilih level user</option>
                           <option value="1">Admin</option>
-                          <option value="2">Staff</option>
+                          <option value="2">User</option>
                       </select>
                       <label>User level</label>
                     </div>

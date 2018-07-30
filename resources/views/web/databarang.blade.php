@@ -38,6 +38,7 @@
           <li><a class="waves-effect black-text" style="padding-left: 45px;" href="datamember">Data member</a></li>
           <li class="active cyan lighten-5"><a class="waves-effect black-text" style="padding-left: 45px;" href="databarang">Data barang</a></li>
           <li><a class="waves-effect black-text" style="padding-left: 45px;" href="pengeluaran">Data pengeluaran</a></li>
+          <li><a class="waves-effect black-text" style="padding-left: 45px;" href="datauser">Data user</a></li>
         </ul>
       </div>
     </li>

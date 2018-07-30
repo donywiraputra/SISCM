@@ -74,6 +74,12 @@ Route::get('bulanselect', 'LaporanController@selectBulan');
 Route::get('datajenistransaksi', 'DataJenisTransaksiController@getDataJenisTransaksi');
 Route::get('/datajenistransaksi/{id}/editbiaya', 'DataJenisTransaksiController@editJenisTransaksi')->middleware('role:admin');
 Route::put('/datajenistransaksi/{id}', 'DataJenisTransaksiController@updateJenisTransaksi');
+Route::get('datauser', 'DataUserController@getDataUser');
+Route::get('datauser/{id}/edit', 'DataUserController@getEditUser');
+Route::put('/datauser/{id}', 'DataUserController@updateUser');
+Route::get('/datauser/{id}/editpassword', 'DataUserController@getGantiPass');
+Route::put('/datauser/updatepass/{id}', 'DataUserController@updateUserPass');
+Route::get('/datauser/{id}/delete', 'DataUserController@deleteUser');
 Route::get('accesserror', function()
   {
     return view('web.accessError');

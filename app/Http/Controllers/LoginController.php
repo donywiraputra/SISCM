@@ -21,7 +21,6 @@ class LoginController extends Controller
       'namauser' => $request->nama,
       'password' => $request->password]))
     {
-    #  $userlogin = auth()->user()->namalengkap;
 
 
       return redirect('/');

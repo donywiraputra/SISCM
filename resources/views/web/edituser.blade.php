@@ -1,4 +1,4 @@
-style="padding-left: 45px;" @extends('layouts.master')
+@extends('layouts.master')
 @section('header')
 <nav class:"top-nav">
   <div class="nav-wrapper white">
@@ -36,9 +36,9 @@ style="padding-left: 45px;" @extends('layouts.master')
           <li><a class="waves-effect black-text" style="padding-left: 45px;" href="/datatransdagang">Data transaksi dagang</a></li>
           <li><a class="waves-effect black-text" style="padding-left: 45px;" href="/datajenistransaksi">Data jenis transaksi</a></li>
           <li><a class="waves-effect black-text" style="padding-left: 45px;" href="/datamember">Data member</a></li>
-          <li class="active cyan lighten-5"><a class="waves-effect black-text" style="padding-left: 45px;" href="/databarang">Data barang</a></li>
+          <li><a class="waves-effect black-text" style="padding-left: 45px;" href="/databarang">Data barang</a></li>
           <li><a class="waves-effect black-text" style="padding-left: 45px;" href="/pengeluaran">Data pengeluaran</a></li>
-          <li><a class="waves-effect black-text" style="padding-left: 45px;" href="/datauser">Data user</a></li>
+          <li class="active cyan lighten-5"><a class="waves-effect black-text" style="padding-left: 45px;" href="/datauser">Data user</a></li>
         </ul>
       </div>
     </li>
@@ -51,80 +51,63 @@ style="padding-left: 45px;" @extends('layouts.master')
 @section('content')
 <div class="container">
 <div class="row">
-  <h4 class="center-align">Tambah Data Barang</h4>
+  <h4 class="center-align">Edit Data User</h4>
 </div>
 </div>
 <div class="divider"></div>
 <div class="container">
 <br>
 
-<form action="{{url(action('TambahdatabarangController@insertDataBarang'))}}" method="post">
-  <div class="row">
-    <div class="input-field col s12 m6 l6">
-      <input name="namabarang" id="namabarang" type="text" class="validate" value="{{ old('namabarang' )}}" autocomplete="off">
-      <label for="namabarang">Nama Barang</label>
+<div class="row">
+  <div class="col s12 m8 offset-m2">
+    <div class="card">
 
-    </div>
-    <div class="col s12 m6 l6">
-      @if($errors->has('namabarang'))
-        <p class="alert red-text">{{ $errors->first('namabarang') }}</p>
-      @endif
+      <div class="card-content grey lighten-5">
+
+        <form action="/datauser/{{ $edituser->id }}" method="post">
+          <input name="_method" type="hidden" value="PUT">
+          <div class="row">
+            <div class="input-field">
+              <input name="nama" type="text" class="validate" value="{{ $edituser->namauser }}" autocomplete="off">
+              <label for="nama">Nama User</label>
+            </div>
+            <div>
+              @if($errors->has('nama'))
+                <p class="alert red-text">{{ $errors->first('nama') }}</p>
+              @endif
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="input-field">
+              <input name="namalengkap" type="text" class="validate" value="{{ $edituser->namalengkap }}" autocomplete="off">
+              <label for="namalengkap">Nama lengkap</label>
+            </div>
+            <div>
+              @if($errors->has('namalengkap'))
+                <p class="alert red-text">{{ $errors->first('namalengkap') }}</p>
+              @endif
+            </div>
+          </div>
+
+          <div class="row">
+            <a href="/datauser/{{ $edituser->id }}/editpassword">Ganti password</a>
+          </div>
+
+          <div class="row">
+            <div class="right">
+              <a href="/datauser" class="btn waves-effect transparent grey-text">Batal</a>
+              <button class="btn waves-effect waves-light btn-small grey darken-2" type="submit">Simpan</button>
+            </div>
+          </div>
+          {{ csrf_field() }}
+        </form>
+      </div>
     </div>
   </div>
+</div>
 
-  <div class="row">
-    <div class="input-field col s12 m6 l6">
-      <input name="harga" id="harga" type="text" class="validate" value="{{ old('harga' )}}" autocomplete="off">
-      <label for="harga">Harga</label>
-
-    </div>
-    <div class="col s12 m6 l6">
-      @if($errors->has('harga'))
-        <p class="alert red-text">{{ $errors->first('harga') }}</p>
-      @endif
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="input-field col s12 m6 l6">
-      <input name="stok" id="stok" type="text" class="validate" value="{{ old('stok' )}}" autocomplete="off">
-      <label for="stok">Jumlah stok</label>
-    </div>
-    <div class="col s12 m6 l6">
-      @if($errors->has('stok'))
-        <p class="alert red-text">{{ $errors->first('stok') }}</p>
-      @endif
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="input-field col s12 m6 l6">
-      <div class="right">
-        <a href="/databarang" class="waves-effect waves-light btn-large">Batal</a>
-        &nbsp
-        <button class="waves-effect waves-light btn-large" type="submit">Simpan</button>
-    </div>
-    </div>
-    @if ($message = Session::get('success'))
-    <div class="col s12 m6 l6">
-      <p class="sukses left light-green-text text-accent-4"><b>{{$message}}</b></p>
-    </div>
-    @endif
-  </div>
-  {{ csrf_field() }}
-<form>
 </div>
 
 
-
-
-@endsection
-
-@section('script')
-<script>
-  $('*').click(function(){
-    $('.alert').fadeOut(1000);
-    $('.sukses').fadeOut(1000);
-  })
-</script>
 @endsection
