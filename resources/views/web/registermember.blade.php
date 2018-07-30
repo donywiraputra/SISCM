@@ -156,7 +156,7 @@ style="padding-left: 45px;" @extends('layouts.master')
   <script>
     $('*').click(function(){
       $('p.alert').hide();
-      $('p.sukses').fadeOut(3000);
+      $('p.sukses').fadeOut(1000);
     });
 
     $('#namamem').change(function(){

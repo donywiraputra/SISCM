@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Datatransaksi;
 use App\Models\Member;
 use App\Models\Jnstransaksi;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 
 class DataTransController extends Controller
@@ -14,9 +16,10 @@ class DataTransController extends Controller
   public function __construct()
   {
     $this->middleware('auth');
+
   }
 
-  public function getDataTrans()
+  public function getDataTrans(Request $request)
   {
     $transview = Datatransaksi::join('jenistransaksi', 'datatransaksi.idjenistransaksi', '=', 'jenistransaksi.idjnstransaksi')
     ->join('member', 'datatransaksi.id_member', '=', 'member.idmember')
