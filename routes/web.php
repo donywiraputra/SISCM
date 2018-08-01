@@ -22,7 +22,7 @@ Route::get('/', function () {
 */
 
 Route::get('/', 'WebController@index');
-Route::get('register', 'RegisterController@getRegister');
+Route::get('register', 'RegisterController@getRegister')->middleware('role:admin');
 Route::post('postRegister', 'RegisterController@postRegister');
 Route::get('login', [ 'as' => 'login', 'uses' => 'LoginController@getLogin']);
 Route::post('postLogin', 'LoginController@postLogin');
@@ -71,15 +71,16 @@ Route::get('/pengeluaran/{id}/delete', 'PengeluaranController@deletePengeluaran'
 Route::get('/laporan', 'LaporanController@getLaporan');
 Route::get('/laporan/data', 'LaporanController@getDataLaporan');
 Route::get('bulanselect', 'LaporanController@selectBulan');
+Route::get('/laporan/pdf', 'LaporanController@convert_pdf');
 Route::get('datajenistransaksi', 'DataJenisTransaksiController@getDataJenisTransaksi');
 Route::get('/datajenistransaksi/{id}/editbiaya', 'DataJenisTransaksiController@editJenisTransaksi')->middleware('role:admin');
 Route::put('/datajenistransaksi/{id}', 'DataJenisTransaksiController@updateJenisTransaksi');
 Route::get('datauser', 'DataUserController@getDataUser');
-Route::get('datauser/{id}/edit', 'DataUserController@getEditUser');
+Route::get('datauser/{id}/edit', 'DataUserController@getEditUser')->middleware('role:admin');
 Route::put('/datauser/{id}', 'DataUserController@updateUser');
 Route::get('/datauser/{id}/editpassword', 'DataUserController@getGantiPass');
 Route::put('/datauser/updatepass/{id}', 'DataUserController@updateUserPass');
-Route::get('/datauser/{id}/delete', 'DataUserController@deleteUser');
+Route::get('/datauser/{id}/delete', 'DataUserController@deleteUser')->middleware('role:admin');
 Route::get('accesserror', function()
   {
     return view('web.accessError');

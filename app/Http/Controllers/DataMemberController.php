@@ -37,7 +37,7 @@ class DataMemberController extends Controller
     ->where('member.expired_date', '=', null)
     ->orderBy('member.updated_at','desc')
     ->paginate(8);
-  //  dd($memberview);
+  
       return view('layouts.tabelmember',compact('memberview'));
   }else if($tes == 'exp'){
     $now = Carbon::now();

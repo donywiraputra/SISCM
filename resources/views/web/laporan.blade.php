@@ -1,11 +1,11 @@
-style="padding-left: 45px;" @extends('layouts.master')
+@extends('layouts.master')
 @section('header')
 <nav class:"top-nav">
   <div class="nav-wrapper white">
     <div class:"row">
       <ul class="right">
-        <li><a href="logout" class="waves-effect waves-green grey-text">Log out</a></li>
-        <li><a href="register" class="waves-effect waves-green grey-text">Register</a></li>
+        <li><a href="logout" class="waves-effect waves-teal grey-text">Log out</a></li>
+        <li><a href="register" class="waves-effect waves-teal grey-text">Register</a></li>
       </ul>
         <a href="#" data-target="slide-out" class="sidenav-trigger hide-on-large-only"><i class="material-icons" id="sidenavbtn">menu</i></a>
     </div>
@@ -97,7 +97,7 @@ style="padding-left: 45px;" @extends('layouts.master')
   </div>
   <div class="col s6">
     <div class="input-field">
-      <input id="tahun" name="tahun" type="text" class="validate" disabled>
+      <input id="tahun" name="tahun" type="text" class="validate" autocomplete="off" disabled>
       <label for="tahun">Tahun</label>
     </div>
   </div>
@@ -162,21 +162,7 @@ $('.datepicker').datepicker({
 
     });
 
-        // if (this.value == 'hari') {
-        //
-        //   $('#tgl').prop('disabled',false);
-        //   $('#tgl2').prop('disabled',false);
-        //   $('#bulan').formSelect().attr('disabled','disabled');
-        //
-        // }
-        // else if (this.value == 'bulan') {
-        //
-        // $('#bulan').formSelect().removeAttr('disabled');
-        //
-        //   $('#tgl2').prop('disabled',true);
-        //   $('#tgl').prop('disabled',true);
-        // }
-
+        
 
 
 

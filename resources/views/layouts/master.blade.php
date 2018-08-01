@@ -69,6 +69,7 @@
       <!--JavaScript at end of body for optimized loading-->
       <script src="{{ asset('https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js') }}"></script>
       <script type="text/javascript" src="{{ asset('js/materialize.min.js') }}"></script>
+      <script type="text/javascript" src="{{ asset('jspdf.debug.js') }}"></script>
       <script>
       $(document).ready(function(){
         $('.sidenav').sidenav();

@@ -92,8 +92,8 @@
                       <p class="sukses left light-green-text text-accent-4"><b>{{$message}}</b></p>
                     @endif
                     <div class="right">
-                      <a href="/" class="btn waves-effect transparent grey-text">Cancel</a>
-                      <button class="btn waves-effect waves-light btn-small grey darken-2" type="submit">Register<i class="material-icons right">send</i></button>
+                      <a href="/" class="btn waves-effect transparent grey-text">Batal</a>
+                      <button class="btn waves-effect transparent grey-text" type="submit">Register<i class="material-icons right">send</i></button>
                     </div>
                   </div>
                   {{ csrf_field() }}

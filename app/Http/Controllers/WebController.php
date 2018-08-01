@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use \Illuminate\Auth\Middleware\Authenticate;
 use Carbon\Carbon;
 use App\Models\Member;
+use App\Models\Datajenisbarang;
 
 class WebController extends Controller
 {
@@ -26,13 +27,9 @@ class WebController extends Controller
       ->orWhere('expired_date', '<', $now)
       ->get();
 
-      return view('web/home', compact('expdate'));
+      $stokbarang = Datajenisbarang::where('stok', '<=', 3)->get();
+
+      return view('web/home', compact('expdate', 'stokbarang'));
     }
 
-    public function homecontent()
-    {
-      $now = Carbon::now();
-      $fivedays = $now->addDate(5);
-      dd($fivedays);
-    }
 }

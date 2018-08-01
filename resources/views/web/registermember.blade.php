@@ -1,11 +1,11 @@
-style="padding-left: 45px;" @extends('layouts.master')
+@extends('layouts.master')
 @section('header')
 <nav class:"top-nav">
   <div class="nav-wrapper white">
     <div class:"row">
       <ul class="right">
-        <li><a href="logout" class="waves-effect waves-green grey-text">Log out</a></li>
-        <li><a href="register" class="waves-effect waves-green grey-text">Register</a></li>
+        <li><a href="logout" class="waves-effect waves-teal grey-text">Log out</a></li>
+        <li><a href="register" class="waves-effect waves-teal grey-text">Register</a></li>
       </ul>
         <a href="#" data-target="slide-out" class="sidenav-trigger hide-on-large-only"><i class="material-icons" id="sidenavbtn">menu</i></a>
     </div>
@@ -138,9 +138,9 @@ style="padding-left: 45px;" @extends('layouts.master')
 
       <div class="row">
         <div class="col s12 m6 l6">
-          <a href="/" class="waves-effect waves-light btn-large">Batal</a>
+          <a href="/" class="waves-effect waves-teal transparent grey-text btn-large">Batal</a>
           &nbsp
-          <button class="waves-effect waves-light btn-large" type="submit">Lanjut</button>
+          <button class="waves-effect waves-teal transparent grey-text btn-large" type="submit">Lanjut</button>
         </div>
         @if ($message = Session::get('success'))
           <p class="sukses left light-green-text text-accent-4"><b>{{$message}}</b></p>
@@ -156,7 +156,7 @@ style="padding-left: 45px;" @extends('layouts.master')
 @section('script')
   <script>
     $('*').click(function(){
-      $('p.alert').hide();
+      $('p.alert').fadeOut(1000);
       $('p.sukses').fadeOut(1000);
     });
 

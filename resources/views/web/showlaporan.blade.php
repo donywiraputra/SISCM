@@ -1,11 +1,11 @@
-style="padding-left: 45px;" @extends('layouts.master')
+@extends('layouts.master')
 @section('header')
 <nav class:"top-nav">
   <div class="nav-wrapper white">
     <div class:"row">
       <ul class="right">
-        <li><a href="logout" class="waves-effect waves-green grey-text">Log out</a></li>
-        <li><a href="register" class="waves-effect waves-green grey-text">Register</a></li>
+        <li><a href="/logout" class="waves-effect waves-teal grey-text">Log out</a></li>
+        <li><a href="/register" class="waves-effect waves-teal grey-text">Register</a></li>
       </ul>
         <a href="#" data-target="slide-out" class="sidenav-trigger hide-on-large-only"><i class="material-icons" id="sidenavbtn">menu</i></a>
     </div>
@@ -32,13 +32,13 @@ style="padding-left: 45px;" @extends('layouts.master')
     font-weight: 500;">Master data</div>
       <div class="collapsible-body">
         <ul>
-          <li><a class="waves-effect black-text" style="padding-left: 45px;" href="datatransaksi">Data transaksi member</a></li>
-          <li><a class="waves-effect black-text" style="padding-left: 45px;" href="datatransdagang">Data transaksi dagang</a></li>
-          <li><a class="waves-effect black-text" style="padding-left: 45px;" href="datajenistransaksi">Data jenis transaksi</a></li>
-          <li><a class="waves-effect black-text" style="padding-left: 45px;" href="datamember">Data member</a></li>
-          <li><a class="waves-effect black-text" style="padding-left: 45px;" href="databarang">Data barang</a></li>
-          <li><a class="waves-effect black-text" style="padding-left: 45px;" href="pengeluaran">Data pengeluaran</a></li>
-          <li><a class="waves-effect black-text" style="padding-left: 45px;" href="datauser">Data user</a></li>
+          <li><a class="waves-effect black-text" style="padding-left: 45px;" href="/datatransaksi">Data transaksi member</a></li>
+          <li><a class="waves-effect black-text" style="padding-left: 45px;" href="/datatransdagang">Data transaksi dagang</a></li>
+          <li><a class="waves-effect black-text" style="padding-left: 45px;" href="/datajenistransaksi">Data jenis transaksi</a></li>
+          <li><a class="waves-effect black-text" style="padding-left: 45px;" href="/datamember">Data member</a></li>
+          <li><a class="waves-effect black-text" style="padding-left: 45px;" href="/databarang">Data barang</a></li>
+          <li><a class="waves-effect black-text" style="padding-left: 45px;" href="/pengeluaran">Data pengeluaran</a></li>
+          <li><a class="waves-effect black-text" style="padding-left: 45px;" href="/datauser">Data user</a></li>
         </ul>
       </div>
     </li>
@@ -97,7 +97,7 @@ style="padding-left: 45px;" @extends('layouts.master')
   </div>
   <div class="col s6">
     <div class="input-field">
-      <input id="tahun" name="tahun" type="text" class="validate" disabled>
+      <input id="tahun" name="tahun" type="text" class="validate" autocomplete="off" disabled>
       <label for="tahun">Tahun</label>
     </div>
   </div>
@@ -107,57 +107,22 @@ style="padding-left: 45px;" @extends('layouts.master')
   <div class="col s12">
       <div>
         <button class="waves-effect waves-light btn" type="submit">Cari</button>
+        <div class="right">
+          <a href="/laporan/pdf">Download PDF/Print</a>
+        </div>
       </div>
       @if ($message = Session::get('error'))
       <div class="center">
         <span class="sukses red-text"><b>{{$message}}</b></span>
       </div>
       @endif
+
   </div>
 </div>
 </form>
 
-
-
-
-<div class="row">
-<div class="col s12">
-  @foreach ($tes as $key => $value)
-
-  <p class="center" id="hari" style="padding: 5px; background-color: #f5f5f5 ; "><b>{{ $key }}</b></p>
-  <table>
-
-        <thead>
-          <tr>
-              <th>Keterangan</th>
-              <th>Debit</th>
-              <th>Kredit</th>
-
-          </tr>
-        </thead>
-
-        <tbody>
-          @foreach ($value as $v)
-
-          <tr id="laporan">
-            <td>{{ $v['keterangan'] }}</td>
-            <td id="debit">{{ $v['debit'] }}</td>
-            <td id="kredit">{{ $v['kredit'] }}</td>
-          </tr>
-
-          @endforeach
-          <tr id="total" style="background-color: #e0f7fa;">
-            <td><b>Total</b></td>
-            <td id="totaldebit">{{ array_sum(array_column($value, 'debit')) }}</td>
-            <td id="totalkredit">{{ array_sum(array_column($value, 'kredit')) }}</td>
-
-          </tr>
-        </tbody>
-
-      </table>
-      <br>
- @endforeach
-</div>
+<div class="tabellaporanharian">
+  @include('layouts.tabellaporanharian')
 </div>
 </div>
 </div>
@@ -166,6 +131,7 @@ style="padding-left: 45px;" @extends('layouts.master')
 
 @section('script')
 <script>
+
 $('.datepicker').datepicker({
   yearRange: 70,
   format: 'yyyy-mm-dd'
@@ -200,58 +166,6 @@ $('input[type=radio][name=group1]').change(function() {
 
 });
 
-$(document).ready(function(){
-  $('#laporan #debit').each(function(){
-    var debit = $(this).text();
 
-    var convdebit = debit.replace(/\D/g, "")
-    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    if ( debit == '' ){
-      $(this).text('');
-    }else{
-    $(this).text('Rp. '+convdebit);
-  }
-  })
-
-  $('#laporan #kredit').each(function(){
-    var kredit = $(this).text();
-
-    var convkredit = kredit.replace(/\D/g, "")
-    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    if ( kredit == '' ){
-      $(this).text('');
-    }else{
-    $(this).text('Rp. '+convkredit);
-  }
-  })
-
-  $('#total #totaldebit').each(function(){
-    var totaldebit = $(this).text();
-
-    var convtotaldeb = totaldebit.replace(/\D/g, "")
-    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    if ( totaldebit == '0' ){
-      $(this).text('');
-    }else{
-    $(this).text('Rp. '+convtotaldeb);
-  }
-  })
-
-  $('#total #totalkredit').each(function(){
-    var totalkredit = $(this).text();
-
-    var convtotalkre = totalkredit.replace(/\D/g, "")
-    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    if ( totalkredit == '0' ){
-      $(this).text('');
-    }else{
-    $(this).text('Rp. '+convtotalkre);
-  }
-  })
-  // var sumstring = sum.toString();
-  // var sumformat = sumstring.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  //
-  //   $('#totaldebit').text('Rp. '+sumformat);
-})
 </script>
 @endsection

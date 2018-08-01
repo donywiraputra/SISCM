@@ -4,8 +4,8 @@
   <div class="nav-wrapper white">
     <div class:"row">
       <ul class="right">
-        <li><a href="logout" class="waves-effect waves-green grey-text">Log out</a></li>
-        <li><a href="register" class="waves-effect waves-green grey-text">Register</a></li>
+        <li><a href="logout" class="waves-effect waves-teal grey-text">Log out</a></li>
+        <li><a href="register" class="waves-effect waves-teal grey-text">Register</a></li>
       </ul>
         <a href="#" data-target="slide-out" class="sidenav-trigger hide-on-large-only"><i class="material-icons" id="sidenavbtn">menu</i></a>
     </div>
@@ -60,15 +60,11 @@
     <div class="row">
       <span>List member yang expired dan akan expired:</span>
     </div>
-  </div>
-
-
-
 
 <div class="row">
   <div class="col s12" style="max-height:500px; overflow-y:auto;">
 
-  <table class="responsive-table highlight">
+  <table class="highlight">
     <thead>
       <tr>
           <th>Nama Member</th>
@@ -77,7 +73,6 @@
           <th>Exp</th>
       </tr>
     </thead>
-
     <tbody id="transdata">
       @foreach ($expdate as $expmember)
       <tr id="data">
@@ -86,10 +81,37 @@
         <td>{{ $expmember->katmember }}</td>
         <td id="exp">{{ $expmember->expired_date }}</td>
       </tr>
-
       @endforeach
     </tbody>
   </table>
+</div>
+</div>
+
+<br>
+  <div class="row">
+    <span>Stok barang yang habis dan akan habis:</span>
+  </div>
+
+<div class="row">
+  <div class="col s12" style="max-height:500px; overflow-y:auto;">
+
+  <table class="highlight">
+    <thead>
+      <tr>
+          <th>Nama barang</th>
+          <th class="center">Stok</th>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach ($stokbarang as $stok)
+      <tr id="data">
+        <td>{{ $stok->namabarang }}</td>
+        <td id="stok" class="center">{{ $stok->stok }}</td>
+      </tr>
+      @endforeach
+    </tbody>
+  </table>
+</div>
 </div>
 </div>
 @endsection
@@ -116,8 +138,16 @@ $(document).ready(function(){
     if( exp === '' ){
       $(this).text('Harian');
     }
-
   });
+
+  $('#data #stok').each(function(){
+    var stok = $(this).text();
+    if(stok == 0){
+      $(this).addClass("red-text text-accent-3");
+    }else if(stok <= 3){
+      $(this).addClass("amber-text");
+    }
+  })
 })
 </script>
 @endsection
