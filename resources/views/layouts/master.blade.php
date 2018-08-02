@@ -62,14 +62,14 @@
         </main>
       <footer class="page-footer white" style="border-top: 2px solid #e0e0e0;">
         <div class="center grey-text" style="padding-bottom: 1em;">
-          © 2018 Copyright Text
+          © 2018 Sanggar Catur Marga.
         </div>
       </footer>
 
       <!--JavaScript at end of body for optimized loading-->
       <script src="{{ asset('https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js') }}"></script>
       <script type="text/javascript" src="{{ asset('js/materialize.min.js') }}"></script>
-      <script type="text/javascript" src="{{ asset('jspdf.debug.js') }}"></script>
+
       <script>
       $(document).ready(function(){
         $('.sidenav').sidenav();

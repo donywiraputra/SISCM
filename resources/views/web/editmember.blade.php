@@ -144,9 +144,9 @@
         <p class="sukses left light-green-text text-accent-4"><b>{{$message}}</b></p>
       @endif
         <div class="col s12 m6 l6">
-          <a href="/datamember" class="waves-effect waves-light btn-large">Batal</a>
+          <a href="/datamember" class="waves-effect waves-teal transparent orange-text text-accent-3 btn-large">Batal</a>
           &nbsp
-          <button class="waves-effect waves-light btn-large" type="submit">Simpan</button>
+          <button class="waves-effect waves-teal transparent cyan-text text-darken-1 btn-large" type="submit">Simpan</button>
         </div>
       </div>
       {{ csrf_field() }}

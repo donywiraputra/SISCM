@@ -80,9 +80,9 @@
 
               <div class="col s12">
                 <div class="right">
-                <a href="/datajenistransaksi" class="waves-effect waves-light btn">Batal</a>
+                <a href="/datajenistransaksi" class="waves-effect waves-teal transparent orange-text text-accent-3 btn">Batal</a>
                 &nbsp
-                <button class="waves-effect waves-light btn" type="submit">Simpan</button>
+                <button class="waves-effect waves-teal transparent cyan-text text-darken-1 btn" type="submit">Simpan</button>
               </div>
               </div>
 

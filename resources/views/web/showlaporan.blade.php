@@ -106,7 +106,7 @@
 <div class="row">
   <div class="col s12">
       <div>
-        <button class="waves-effect waves-light btn" type="submit">Cari</button>
+        <button class="waves-effect waves-teal transparent cyan-text text-darken-1 btn" type="submit">Cari</button>
         <div class="right">
           <a href="/laporan/pdf">Download PDF/Print</a>
         </div>

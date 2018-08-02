@@ -75,7 +75,7 @@ Route::get('/laporan/pdf', 'LaporanController@convert_pdf');
 Route::get('datajenistransaksi', 'DataJenisTransaksiController@getDataJenisTransaksi');
 Route::get('/datajenistransaksi/{id}/editbiaya', 'DataJenisTransaksiController@editJenisTransaksi')->middleware('role:admin');
 Route::put('/datajenistransaksi/{id}', 'DataJenisTransaksiController@updateJenisTransaksi');
-Route::get('datauser', 'DataUserController@getDataUser');
+Route::get('datauser', 'DataUserController@getDataUser')->middleware('role:admin');
 Route::get('datauser/{id}/edit', 'DataUserController@getEditUser')->middleware('role:admin');
 Route::put('/datauser/{id}', 'DataUserController@updateUser');
 Route::get('/datauser/{id}/editpassword', 'DataUserController@getGantiPass');

@@ -92,8 +92,8 @@
 
           <div class="row">
             <div class="right">
-              <a href="/datauser" class="btn waves-effect transparent grey-text">Batal</a>
-              <button class="btn waves-effect waves-light btn-small grey darken-2" type="submit">Simpan</button>
+              <a href="/datauser" class="waves-effect waves-teal transparent orange-text text-accent-3 btn">Batal</a>
+              <button class="btn waves-effect waves-teal transparent cyan-text text-darken-1" type="submit">Simpan</button>
             </div>
           </div>
           {{ csrf_field() }}

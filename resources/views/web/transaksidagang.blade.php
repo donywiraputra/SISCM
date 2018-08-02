@@ -87,8 +87,8 @@
   <div class="row">
     <div class="col s12">
       <div class="right">
-        <a id="catat" class="waves-effect waves-light btn">Catat</a>&nbsp;
-        <a id="simpan" class="waves-effect waves-light btn disabled">Simpan</a>
+        <a id="catat" class="waves-effect waves-teal transparent cyan-text text-darken-1 btn">Catat</a>&nbsp;
+        <a id="simpan" class="waves-effect waves-teal transparent cyan-text text-darken-1 btn disabled">Simpan</a>
       </div>
     </div>
   {{ csrf_field() }}
@@ -271,7 +271,7 @@ $('#autocomplete-input').change(function(){
 
       if(uang == total){
         $('#pesan').html('<b class="light-green-text text-accent-4">Uang pas</b>').fadeIn(0);
-        $('#simpan').attr('class', 'waves-effect waves-light btn');
+        $('#simpan').attr('class', 'waves-effect waves-teal transparent cyan-text text-darken-1 btn');
       }else if(uang == ''){
         $('#pesan').fadeOut(1000);
         $('#simpan').attr('class', 'waves-effect waves-light btn disabled');
@@ -279,7 +279,7 @@ $('#autocomplete-input').change(function(){
         var kembali = uang - total;
         var kembaliconv = (kembali/1000).toFixed(3).replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         $('#pesan').html('<b class="light-green-text text-accent-4">Kembali Rp. '+kembaliconv+'</b>').fadeIn(0);
-        $('#simpan').attr('class', 'waves-effect waves-light btn');
+        $('#simpan').attr('class', 'waves-effect waves-teal transparent cyan-text text-darken-1 btn');
       }else if(uang < total){
         $('#pesan').html('<b class="red-text">Uang kurang</b>').fadeIn(0);
         $('#simpan').attr('class', 'waves-effect waves-light btn disabled');
