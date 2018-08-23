@@ -1,11 +1,14 @@
 @extends('layouts.master')
+@section('title')
+  SISCM - Edit jenis transaksi
+@endsection
 @section('header')
 <nav class:"top-nav">
   <div class="nav-wrapper white">
     <div class:"row">
       <ul class="right">
-        <li><a href="/logout" class="waves-effect waves-teal grey-text">Log out</a></li>
-        <li><a href="/register" class="waves-effect waves-teal grey-text">Register</a></li>
+        <li><a href="/logout" class="waves-effect black-text">Log out</a></li>
+        <li><a href="/register" class="waves-effect black-text">Register</a></li>
       </ul>
         <a href="#" data-target="slide-out" class="sidenav-trigger hide-on-large-only"><i class="material-icons" id="sidenavbtn">menu</i></a>
     </div>
@@ -80,9 +83,9 @@
 
               <div class="col s12">
                 <div class="right">
-                <a href="/datajenistransaksi" class="waves-effect waves-teal transparent orange-text text-accent-3 btn">Batal</a>
+                <a href="/datajenistransaksi" class="btn waves-effect waves-light btn-small grey darken-2">Batal</a>
                 &nbsp
-                <button class="waves-effect waves-teal transparent cyan-text text-darken-1 btn" type="submit">Simpan</button>
+                <button class="btn waves-effect waves-light btn-small grey darken-2" type="submit">Simpan</button>
               </div>
               </div>
 

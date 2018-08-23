@@ -29,8 +29,8 @@
         <td>Rp. {{ number_format($data->jumlah) }}</td>
         <td>{{ $data->namauser }}</td>
         <td>{{ $data->created_at }}</td>
-        <td><a href="/pengeluaran/{{ $data->id }}/edit" class="btn waves-effect waves-teal btn-flat">Edit</a></td>
-        <td><a data-target="modal{{ $data->id }}" id="modalalert" class="btn modal-trigger waves-effect waves-teal btn-flat">Hapus</a></td>
+        <td><a href="/pengeluaran/{{ $data->id }}/edit" class="btn waves-effect waves-light btn-small grey darken-2">Edit</a></td>
+        <td><a data-target="modal{{ $data->id }}" id="modalalert" class="btn waves-effect waves-light btn-small grey darken-2">Hapus</a></td>
 
       </tr>
       <!-- Modal Structure -->

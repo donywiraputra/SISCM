@@ -1,11 +1,14 @@
 @extends('layouts.master')
+@section('title')
+  SISCM - Data barang
+@endsection
 @section('header')
 <nav class:"top-nav">
   <div class="nav-wrapper white">
     <div class:"row">
       <ul class="right">
-        <li><a href="logout" class="waves-effect waves-teal grey-text">Log out</a></li>
-        <li><a href="register" class="waves-effect waves-teal grey-text">Register</a></li>
+        <li><a href="logout" class="waves-effect black-text">Log out</a></li>
+        <li><a href="register" class="waves-effect black-text">Register</a></li>
       </ul>
         <a href="#" data-target="slide-out" class="sidenav-trigger hide-on-large-only"><i class="material-icons" id="sidenavbtn">menu</i></a>
     </div>
@@ -67,7 +70,7 @@
       <span class="sukses light-green-text text-accent-4"><b>{{$message}}</b></span>
     @endif
       <span id="warning" class="red-text"></span>
-  
+
 </div>
 
 </div>

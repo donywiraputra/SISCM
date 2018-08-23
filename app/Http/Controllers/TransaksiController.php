@@ -21,8 +21,9 @@ class TransaksiController extends Controller
   {
     $fitness = Jnstransaksi::where('namatransaksi', 'LIKE', '%fitness%')->get();
     $aerobic = Jnstransaksi::where('namatransaksi', 'LIKE', '%aerobic%')->get();
+    $yoga = Jnstransaksi::where('namatransaksi', 'LIKE', '%yoga%')->get();
 
-    return view('web/transaksimember', compact('fitness', 'aerobic'));
+    return view('web/transaksimember', compact('fitness', 'aerobic', 'yoga'));
   }
 
   public function dataMember(Request $request)

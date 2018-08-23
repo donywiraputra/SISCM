@@ -1,11 +1,14 @@
 @extends('layouts.master')
+@section('title')
+  SISCM - Data user
+@endsection
 @section('header')
 <nav class:"top-nav">
   <div class="nav-wrapper white">
     <div class:"row">
       <ul class="right">
-        <li><a href="logout" class="waves-effect waves-teal grey-text">Log out</a></li>
-        <li><a href="register" class="waves-effect waves-teal grey-text">Register</a></li>
+        <li><a href="logout" class="waves-effect black-text">Log out</a></li>
+        <li><a href="register" class="waves-effect black-text">Register</a></li>
       </ul>
         <a href="#" data-target="slide-out" class="sidenav-trigger hide-on-large-only"><i class="material-icons" id="sidenavbtn">menu</i></a>
     </div>
@@ -83,8 +86,8 @@
           <td>{{ $datauser->namauser }}</td>
           <td>{{ $datauser->namalengkap }}</td>
           <td>{{ $datauser->namarole }}</td>
-          <td><a href="datauser/{{ $datauser->id }}/edit" class="btn waves-effect waves-teal btn-flat">Edit</a></td>
-          <td><a data-target="modal{{ $datauser->id }}" id="modalalert" class="btn modal-trigger waves-effect waves-teal btn-flat">Hapus</a></td>
+          <td><a href="datauser/{{ $datauser->id }}/edit" class="btn waves-effect waves-light btn-small grey darken-2">Edit</a></td>
+          <td><a data-target="modal{{ $datauser->id }}" id="modalalert" class="btn waves-effect waves-light btn-small grey darken-2">Hapus</a></td>
         </tr>
 
         <!-- Modal Structure -->

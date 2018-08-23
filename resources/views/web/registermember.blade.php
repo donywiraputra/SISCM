@@ -1,11 +1,14 @@
 @extends('layouts.master')
+@section('title')
+  SISCM - Register member
+@endsection
 @section('header')
 <nav class:"top-nav">
   <div class="nav-wrapper white">
     <div class:"row">
       <ul class="right">
-        <li><a href="logout" class="waves-effect waves-teal grey-text">Log out</a></li>
-        <li><a href="register" class="waves-effect waves-teal grey-text">Register</a></li>
+        <li><a href="logout" class="waves-effect black-text">Log out</a></li>
+        <li><a href="register" class="waves-effect black-text">Register</a></li>
       </ul>
         <a href="#" data-target="slide-out" class="sidenav-trigger hide-on-large-only"><i class="material-icons" id="sidenavbtn">menu</i></a>
     </div>
@@ -138,9 +141,9 @@
 
       <div class="row">
         <div class="col s12 m6 l6">
-          <a href="/" class="waves-effect waves-teal transparent orange-text text-accent-3 btn-large">Batal</a>
+          <a href="/" class="btn waves-effect waves-light btn-small grey darken-2">Batal</a>
           &nbsp
-          <button class="waves-effect waves-teal transparent cyan-text text-darken-1 btn-large" type="submit">Proses</button>
+          <button class="btn waves-effect waves-light btn-small grey darken-2" type="submit">Proses</button>
         </div>
         @if ($message = Session::get('success'))
           <p class="sukses left light-green-text text-accent-4"><b>{{$message}}</b></p>

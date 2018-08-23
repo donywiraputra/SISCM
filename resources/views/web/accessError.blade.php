@@ -1,11 +1,14 @@
 @extends('layouts.master')
+@section('title')
+  SISCM - Error
+@endsection
 @section('header')
 <nav class:"top-nav">
   <div class="nav-wrapper white">
     <div class:"row">
       <ul class="right">
-        <li><a href="/logout" class="waves-effect waves-teal grey-text">Log out</a></li>
-        <li><a href="/register" class="waves-effect waves-teal grey-text">Register</a></li>
+        <li><a href="/logout" class="waves-effect black-text">Log out</a></li>
+        <li><a href="/register" class="waves-effect black-text">Register</a></li>
       </ul>
         <a href="#" data-target="slide-out" class="sidenav-trigger hide-on-large-only"><i class="material-icons" id="sidenavbtn">menu</i></a>
     </div>
@@ -53,7 +56,7 @@
   <div class="container">
     <div class="row">
       <div class="message" style="font-size: 80px; margin-bottom: 30px; margin-top: 100px; text-align: center; color: #bdbdbd; font-weight: 100; ">
-          <i class="large material-icons" style="font-size: 200px; padding-bottom: 10px;">remove_circle</i> <br> Akses ini hanya untuk admin
+          <p>Akses ini hanya untuk admin</p>
       </div>
     </div>
   </div>

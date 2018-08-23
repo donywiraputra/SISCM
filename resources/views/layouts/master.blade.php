@@ -1,6 +1,9 @@
 <html>
     <head>
-      <title>scm</title>
+      <title>
+        @yield('title')
+      </title>
+      <link rel="icon" href="{!! asset('/images/sis-logo.png') !!}"/>
       <!--Import Google Icon Font-->
       <link href="{{ asset('https://fonts.googleapis.com/icon?family=Material+Icons') }}" rel="stylesheet">
       <!--Import materialize.css-->
