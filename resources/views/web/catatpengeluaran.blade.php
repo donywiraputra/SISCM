@@ -90,9 +90,9 @@
   <div class="row">
     <div class="col s12 m6 l6">
       <div class="right">
-        <a href="/pengeluaran" class="waves-effect waves-light btn-large">Batal</a>
+        <a href="/pengeluaran" class="btn waves-effect waves-light btn-small grey darken-2">Kembali</a>
         &nbsp
-        <button class="waves-effect waves-light btn-large" type="submit">Simpan</button>
+        <button class="btn waves-effect waves-light btn-small grey darken-2" type="submit">Simpan</button>
     </div>
     </div>
     @if ($message = Session::get('success'))

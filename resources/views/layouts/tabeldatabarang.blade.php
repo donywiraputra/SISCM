@@ -32,7 +32,7 @@
         <td id="created">{{ $barang->namauser }}</td>
         <td>{{ $barang->updated_at }}</td>
         <td><a href="/databarang/id{{ $barang->id }}/edit" class="btn waves-effect waves-light btn-small grey darken-2">Edit</a></td>
-        <td><a data-target="modal{{ $barang->id }}" id="modalalert" class="btn waves-effect waves-light btn-small grey darken-2">Hapus</a></td>
+        <td><a data-target="modal{{ $barang->id }}" id="modalalert" class="modal-trigger btn waves-effect waves-light btn-small grey darken-2">Hapus</a></td>
 
       </tr>
 

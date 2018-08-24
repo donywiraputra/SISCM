@@ -147,7 +147,7 @@
         <p class="sukses left light-green-text text-accent-4"><b>{{$message}}</b></p>
       @endif
         <div class="col s12 m6 l6">
-          <a href="/datamember" class="btn waves-effect waves-light btn-small grey darken-2">Batal</a>
+          <a href="/datamember" class="btn waves-effect waves-light btn-small grey darken-2">Kembali</a>
           &nbsp
           <button class="btn waves-effect waves-light btn-small grey darken-2" type="submit">Simpan</button>
         </div>

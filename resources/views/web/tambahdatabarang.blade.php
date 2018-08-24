@@ -103,9 +103,9 @@
   <div class="row">
     <div class="input-field col s12 m6 l6">
       <div class="right">
-        <a href="/databarang" class="waves-effect waves-light btn-large">Batal</a>
+        <a href="/databarang" class="btn waves-effect waves-light btn-small grey darken-2">Kembali</a>
         &nbsp
-        <button class="waves-effect waves-light btn-large" type="submit">Simpan</button>
+        <button class="btn waves-effect waves-light btn-small grey darken-2" type="submit">Simpan</button>
     </div>
     </div>
     @if ($message = Session::get('success'))

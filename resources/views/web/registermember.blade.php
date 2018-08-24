@@ -141,7 +141,7 @@
 
       <div class="row">
         <div class="col s12 m6 l6">
-          <a href="/" class="btn waves-effect waves-light btn-small grey darken-2">Batal</a>
+          <a href="/" class="btn waves-effect waves-light btn-small grey darken-2">Kembali</a>
           &nbsp
           <button class="btn waves-effect waves-light btn-small grey darken-2" type="submit">Proses</button>
         </div>

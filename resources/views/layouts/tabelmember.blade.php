@@ -29,7 +29,7 @@
         <td id="created">{{ $member->created_at }}</td>
         <td id="exp">{{ $member->expired_date }}</td>
         <td><a href="/datamember/{{ $member->idmember }}/detail" class="btn waves-effect waves-light btn-small grey darken-2">Edit</a></td>
-        <td><a data-target="modal{{ $member->idmember }}" id="modalalert" class="btn waves-effect waves-light btn-small grey darken-2">Hapus</a></td>
+        <td><a data-target="modal{{ $member->idmember }}" id="modalalert" class="modal-trigger btn waves-effect waves-light btn-small grey darken-2">Hapus</a></td>
 
       </tr>
 

@@ -73,8 +73,6 @@
                       @endif
                     </div>
 
-
-
                     <div class="input-field">
                       <input name="repassword" type="password" class="validate">
                       <label for="password">Ulangi password</label>
@@ -91,7 +89,7 @@
                       <p class="sukses left light-green-text text-accent-4"><b>{{$message}}</b></p>
                     @endif
 
-                      <a href="/" class="btn waves-effect waves-light btn-small grey darken-2">Batal</a>
+                      <a href="/" class="btn waves-effect waves-light btn-small grey darken-2">Kembali</a>
                       <button class="btn waves-effect waves-light btn-small grey darken-2" type="submit">Register</button>
 
                   </div>

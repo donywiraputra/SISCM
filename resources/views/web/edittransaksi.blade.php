@@ -104,7 +104,7 @@
 
     <div class="row">
       <div class="col s12 m6 l6">
-      <a href="/datatransaksi" id="cancel" class="btn waves-effect waves-light btn-small grey darken-2">Batal</a>&nbsp;
+      <a href="/datatransaksi" id="cancel" class="btn waves-effect waves-light btn-small grey darken-2">Kembali</a>&nbsp;
       <a id="proses" class="btn waves-effect waves-light btn-small grey darken-2">Simpan</a>
     </div>
     </div>

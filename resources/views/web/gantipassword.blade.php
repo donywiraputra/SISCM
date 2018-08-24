@@ -95,7 +95,7 @@
 
           <div class="row">
             <div class="right">
-              <a href="/datauser" class="btn waves-effect waves-light btn-small grey darken-2">Batal</a>
+              <a href="/datauser" class="btn waves-effect waves-light btn-small grey darken-2">Kembali</a>
               <button class="btn waves-effect waves-light btn-small grey darken-2" type="submit">Simpan</button>
             </div>
           </div>

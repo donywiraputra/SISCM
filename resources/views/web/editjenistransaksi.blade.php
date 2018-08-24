@@ -83,7 +83,7 @@
 
               <div class="col s12">
                 <div class="right">
-                <a href="/datajenistransaksi" class="btn waves-effect waves-light btn-small grey darken-2">Batal</a>
+                <a href="/datajenistransaksi" class="btn waves-effect waves-light btn-small grey darken-2">Kembali</a>
                 &nbsp
                 <button class="btn waves-effect waves-light btn-small grey darken-2" type="submit">Simpan</button>
               </div>

@@ -41,7 +41,7 @@
         <td>Rp. {{ number_format($dagang->biaya) }}</td>
         <td>{{ $dagang->namauser }}</td>
         <td>{{ $dagang->created_at }}</td>
-        <td><a data-target="modal{{ $dagang->id }}" id="modalalert" class="btn modal-trigger waves-effect waves-teal btn-flat">Hapus</a></td>
+        <td><a data-target="modal{{ $dagang->id }}" id="modalalert" class="modal-trigger btn waves-effect waves-light btn-small grey darken-2">Hapus</a></td>
       </tr>
 
       <!-- Modal Structure -->

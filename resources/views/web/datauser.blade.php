@@ -87,7 +87,7 @@
           <td>{{ $datauser->namalengkap }}</td>
           <td>{{ $datauser->namarole }}</td>
           <td><a href="datauser/{{ $datauser->id }}/edit" class="btn waves-effect waves-light btn-small grey darken-2">Edit</a></td>
-          <td><a data-target="modal{{ $datauser->id }}" id="modalalert" class="btn waves-effect waves-light btn-small grey darken-2">Hapus</a></td>
+          <td><a data-target="modal{{ $datauser->id }}" id="modalalert" class="modal-trigger btn waves-effect waves-light btn-small grey darken-2">Hapus</a></td>
         </tr>
 
         <!-- Modal Structure -->

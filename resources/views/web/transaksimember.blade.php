@@ -119,7 +119,7 @@
     </div>
     <div class="row">
       <div class="col s12 m6 l6">
-      <a href="/transmember" id="cancel" class="btn waves-effect waves-light btn-small grey darken-2">Batal</a>&nbsp;
+      <a href="/" id="cancel" class="btn waves-effect waves-light btn-small grey darken-2">Kembali</a>&nbsp;
       <a id="proses" class="btn waves-effect waves-light btn-small grey darken-2 disabled">Proses</a>
     </div>
     <div class="col s12 m6 l6">

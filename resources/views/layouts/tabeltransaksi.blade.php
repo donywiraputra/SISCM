@@ -29,7 +29,7 @@
         <td>{{ $transaksi->namauser }}</td>
         <td>{{ $transaksi->created_at }}</td>
         <td><a href="datatransaksi/id{{ $transaksi->idtransaksi }}/edit" class="btn waves-effect waves-light btn-small grey darken-2">Edit</a></td>
-        <td><a data-target="modal{{ $transaksi->idtransaksi }}" id="modalalert" class="btn waves-effect waves-light btn-small grey darken-2">Hapus</a></td>
+        <td><a data-target="modal{{ $transaksi->idtransaksi }}" id="modalalert" class="modal-trigger btn waves-effect waves-light btn-small grey darken-2">Hapus</a></td>
 
       </tr>
       <!-- Modal Structure -->

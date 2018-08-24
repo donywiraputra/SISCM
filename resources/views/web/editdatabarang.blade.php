@@ -104,7 +104,7 @@
   <div class="row">
     <div class="input-field col s12 m6 l6">
       <div class="right">
-        <a href="/databarang" class="btn waves-effect waves-light btn-small grey darken-2">Batal</a>
+        <a href="/databarang" class="btn waves-effect waves-light btn-small grey darken-2">Kembali</a>
         &nbsp
         <button class="btn waves-effect waves-light btn-small grey darken-2" type="submit">Simpan</button>
     </div>
